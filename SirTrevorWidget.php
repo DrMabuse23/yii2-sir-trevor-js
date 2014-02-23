@@ -9,7 +9,7 @@
 namespace sirtrevorjs;
 
 use Yii;
-use common\modules\sirtrevorjs_widget\assets\SirTrevorCompleteAsset;
+use sirtrevorjs\assets\SirTrevorCompleteAsset;
 use yii\base\Widget;
 
 class SirTrevorWidget extends Widget {
