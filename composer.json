@@ -1,5 +1,8 @@
 {
     "name": "drmabuse/sirtrevorjs",
+    "description": "Yii 2 Sir Trevor JS widget",
+    "keywords": ["yii-2", "nestedset","menu" ],
+    "homepage": "http://pascal-brewing.de",
     "license": "BSD-3-Clause",
     "version": "0.0.2",
     "type":"yii2-widget",
@@ -17,7 +20,7 @@
         }
     ],
     "support": {
-        "source": "https://bitbucket.org/DrMabuse/nestedmenu/src"
+        "source": "https://github.com/brewing/yii2-sir-trevor-js"
     },
     "autoload": {
         "psr-4": {
