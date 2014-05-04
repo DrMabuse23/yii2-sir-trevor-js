@@ -54,6 +54,8 @@ class SirTrevorWidget extends Widget {
 
     public function init(){
         parent::init();
+        Yii::setAlias('@sirtrevorjs',dirname(__FILE__));
+
         $this->registerAsset();
 
     }

@@ -7,13 +7,13 @@
  */
 
 namespace drmabuse\sirtrevorjs\assets;
-const VERSION = '0.0.2';
+
 use Yii;
 use yii\web\AssetBundle;
 
 class SirTrevorCompleteAsset extends AssetBundle {
-
-    public $sourcePath = '@drmabuse/sirtrevorjs/dist/';
+    const VERSION = '0.0.2';
+    public $sourcePath = '@sirtrevorjs/dist/';
     public $css = [
         'yii2-sirtrevorjs-0.0.2.min.css',
     ];
