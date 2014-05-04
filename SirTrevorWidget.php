@@ -33,35 +33,78 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace drmabuse\sirtrevorjs;
 
 use Yii;
-use yii\base\Widget;
+use yii\helpers\Html;
+use yii\helpers\Json;
+use yii\web\JsExpression;
+use yii\widgets\InputWidget;
 use drmabuse\sirtrevorjs\assets\SirTrevorCompleteAsset;
 
 /**
  * Class SirTrevorWidget
  * @package yii2-sirtrevorjs
  */
-class SirTrevorWidget extends Widget {
+class SirTrevorWidget extends InputWidget {
 
-    public $debug           = false;
+    public $debug           = 'false';
     public $language        = 'en';
-    public $blockOptions    = [];
+    public $blockOptions    = null;
     public $blockTypes      = ["Heading","Text","List","Quote","Image","Video","Tweet"];
-    public $element;
-    public $model;
+    public $element         = '.sir-trevor';
+    public $imageUploadUrl  = 'site/upload';
+    public $initJs          = null;
 
+    public $options;
     public $assetMode       = 'complete';
 
 
     public function init(){
         parent::init();
+
+        if (is_null($this->blockOptions)) {
+            $this->blockOptions = Json::encode([
+                'el'            => new JsExpression("$('{$this->element}')"),
+                'blockTypes'    => $this->blockTypes
+            ]);
+        }
+
+        if (is_null($this->initJs)) {
+            $this->initJs = 'SirTrevor.DEBUG = ' . $this->debug . ';'.PHP_EOL;
+            $this->initJs .= 'SirTrevor.LANGUAGE = "' . $this->language . '";'.PHP_EOL;
+            $this->initJs .= 'SirTrevor.setDefaults({ uploadUrl: "' . $this->imageUploadUrl . '" });'.PHP_EOL;
+            $this->initJs .= "window.editor = new SirTrevor.Editor(" . $this->blockOptions . ");".PHP_EOL;
+        }
+
+        $this->options['class'] = $this->element;
         Yii::setAlias('@sirtrevorjs',dirname(__FILE__));
 
         $this->registerAsset();
 
     }
 
+    public function run(){
+        echo $this->renderInput();
+    }
+
+    /**
+     * register the concated files
+     */
     private function registerAsset(){
-        SirTrevorCompleteAsset::register($this->view);
+        SirTrevorCompleteAsset::register($this->view)->language = $this->language;
+        $this->view->registerJs('$(function(){' . $this->initJs . '});');
+    }
+
+    /**
+     * Render the text area input
+     */
+    protected function renderInput()
+    {
+        if ($this->hasModel()) {
+            $input = Html::activeTextArea($this->model, $this->attribute, $this->options);
+        } else {
+            $input = Html::textArea($this->name, $this->value, $this->options);
+        }
+
+        return $input;
     }
 
 } 

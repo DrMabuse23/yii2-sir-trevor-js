@@ -1,0 +1,23 @@
+{
+  "name": "eventable",
+  "version": "1.0.4",
+  "description": "The events part of Backbone",
+  "main": "eventable.js",
+  "ignore": [
+    "test",
+    "components"
+  ],
+  "dependencies": {
+    "underscore": "git://github.com/components/underscore.git#1.4.4"
+  },
+  "homepage": "https://github.com/madebymany/eventable",
+  "_release": "1.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.4",
+    "commit": "192a3bfe3209d8ef06a82684e5c1eda0edefa370"
+  },
+  "_source": "git://github.com/madebymany/eventable.git",
+  "_target": "~1.0.1",
+  "_originalSource": "Eventable"
+}

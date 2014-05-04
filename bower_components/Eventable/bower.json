@@ -1,0 +1,13 @@
+{
+  "name": "eventable",
+  "version": "1.0.4",
+  "description": "The events part of Backbone",
+  "main": "eventable.js",
+  "ignore": [
+    "test",
+    "components"
+  ],
+  "dependencies": {
+    "underscore": "git://github.com/components/underscore.git#1.4.4"
+  }
+}
