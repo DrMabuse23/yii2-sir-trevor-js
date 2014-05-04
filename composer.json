@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "drmabuse\\yii2-sirtrevorjs\\": ""
+            "drmabuse\\sirtrevorjs\\": ""
         }
     }
 }
