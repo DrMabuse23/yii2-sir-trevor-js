@@ -1,5 +1,5 @@
 {
-    "name": "drmabuse/sirtrevorjs",
+    "name": "drmabuse/yii2-sir-trevor-js",
     "description": "Yii 2 Sir Trevor JS widget",
     "keywords": ["yii-2", "nestedset","menu" ],
     "homepage": "http://pascal-brewing.de",
@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "drmabuse/sirtrevorjs\\": ""
+            "drmabuse\\yii2-sirtrevorjs\\": ""
         }
     }
 }

@@ -6,14 +6,14 @@
  * Time: 08:27
  */
 
-namespace sirtrevorjs\assets;
+namespace drmabuse\sirtrevorjs\assets;
 const VERSION = '0.0.2';
 use Yii;
 use yii\web\AssetBundle;
 
 class SirTrevorCompleteAsset extends AssetBundle {
 
-    public $sourcePath = '@sirtrevorjs/dist';
+    public $sourcePath = '@drmabuse/sirtrevorjs/dist/';
     public $css = [
         'yii2-sirtrevorjs-0.0.2.min.css',
     ];
@@ -32,4 +32,4 @@ class SirTrevorCompleteAsset extends AssetBundle {
     public $publishOptions = [
         'forceCopy' => true
     ];
-} 
+}

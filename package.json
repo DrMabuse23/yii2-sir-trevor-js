@@ -1,7 +1,7 @@
 {
-  "name": "yii2-sirtrevorjs",
+  "name": "drmabuse/yii2-sirtrevorjs",
   "version": "0.0.2",
-  "description": "sirtrevorjs as yii2 module",
+  "description": "yii2-sirtrevorjs as yii2 module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
