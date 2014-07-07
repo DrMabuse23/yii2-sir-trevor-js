@@ -1,18 +1,18 @@
 {
-    "name": "mcapcli",
-    "version": "0.0.0",
-    "description": "Commandline Interface to generate mCAP Applications",
-    "main": "index.js",
-    "scripts": {
-        "test": "tap test/*.js"
-    },
-    "author": "mwaylabs",
-    "license": "Apache-2.0",
-    "dependencies": {
-        "promzard": "^0.2.2",
-        "commander": "2.2.0"
-    },
-    "devDependencies": {
-        "tap": "^0.4.11"
-    }
+  "name": "mcapcli",
+  "version": "0.0.0",
+  "description": "Commandline Interface to generate mCAP Applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "author": "mwaylabs",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "promzard": "^0.2.2",
+    "commander": "^2.2.0"
+  },
+  "devDependencies": {
+    "tap": "^0.4.11"
+  }
 }
