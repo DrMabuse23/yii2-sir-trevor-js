@@ -1,0 +1,17 @@
+{
+  "name": "mcapcli",
+  "version": "0.0.0",
+  "description": "Commandline Interface to generate mCAP Applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "author": "mwaylabs",
+  "license": "MIT",
+  "dependencies": {
+    "promzard": "^0.2.2"
+  },
+  "devDependencies": {
+    "tap": "^0.4.11"
+  }
+}
