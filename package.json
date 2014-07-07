@@ -7,7 +7,7 @@
     "test": "tap test/*.js"
   },
   "author": "mwaylabs",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "promzard": "^0.2.2"
   },
