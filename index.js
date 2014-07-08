@@ -3,7 +3,7 @@
 var program = require('commander');
 
 var component = require('./lib/component');
-var server = require('./lib/server');
+var serverconfig = require('./lib/serverconfig');
 
 function commandInfo(){
     console.log('Version', program._version);
@@ -17,8 +17,8 @@ function commandExample(){
     console.log('example ...');
 }
 
-function commandServer(){
-    server.parse(program.server, program.args);
+function commandServerConfig(){
+    serverconfig.parse(program.server, program.args);
 }
 
 function commandLog(){
@@ -39,7 +39,7 @@ program
     .parse(process.argv);
 
 if (program.generate){
-    component.generate(program);
+    component.generate(program.generate);
 } else if(program.info){
     commandInfo();
 } else if(program.new){
@@ -47,7 +47,7 @@ if (program.generate){
 } else if(program.example){
     commandExample();
 } else if(program.server){
-    commandServer();
+    commandServerConfig();
 } else if(program.log){
     commandLog();
 }
