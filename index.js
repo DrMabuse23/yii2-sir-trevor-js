@@ -34,6 +34,7 @@ program
     .option('server <remove> [alias]', 'Remove a server configuration')
     .option('server <info> [alias]', 'See the server configuration')
     .option('server <list>', 'List all server')
+    .option('server <default> [alias]', 'List all server')
     .option('log [alias]', 'Live logger of the given server')
     .option('generate <component>', 'Generate a mCAP Component, components: ' + component.getComponentList().join(', '))
     .parse(process.argv);

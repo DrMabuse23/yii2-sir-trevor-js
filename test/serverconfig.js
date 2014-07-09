@@ -26,7 +26,7 @@ tap.test('list', function( t ) {
     reset();
     var config = serverConfig.list();
     t.deepEqual(config, emptyConf);
-
+    reset();
     t.end();
 
 });
@@ -93,7 +93,7 @@ tap.test('add', function( t ) {
         "password" : 'd'
     };
     t.deepEqual(config, added);
-
+    reset();
     t.end();
 
 });
@@ -125,7 +125,45 @@ tap.test('remove', function( t ) {
     t.deepEqual(config, added);
     config = serverConfig.remove(['a']);
     t.deepEqual(config, emptyConf);
-
+    reset();
     t.end();
+
+});
+
+tap.test('default', function( t ) {
+
+    reset();
+    serverConfig.add(['a', 'b', 'c', 'd']);
+    serverConfig.add(['a1', 'b1', 'c1', 'd1']);
+    var config = serverConfig.add(['a2', 'b2', 'c2', 'd2']);
+    var added = _deepCopy(config);
+
+    t.deepEqual(config, added);
+
+    added = serverConfig.setDefault('a1');
+    config['default'] = "a1";
+    delete config._;
+    delete added._;
+    t.deepEqual(config, added);
+
+    added = serverConfig.setDefault('a2');
+    config['default'] = "a2";
+    delete config._;
+    delete added._;
+    t.deepEqual(config, added);
+
+    t.notOk(serverConfig.setDefault(), "missing param");
+    t.notOk(serverConfig.setDefault({}), "wrong param type");
+    t.notOk(serverConfig.setDefault([]), "wrong param type");
+    t.notOk(serverConfig.setDefault(1), "wrong param type");
+    t.notOk(serverConfig.setDefault(0), "wrong param type");
+    t.notOk(serverConfig.setDefault(2), "wrong param type");
+    t.notOk(serverConfig.setDefault(-1), "wrong param type");
+    t.notOk(serverConfig.setDefault(undefined), "wrong param type");
+    t.notOk(serverConfig.setDefault(null), "wrong param type");
+    t.notOk(serverConfig.setDefault('xxxx'), "wrong param");
+    reset();
+    t.end();
+
 
 });
