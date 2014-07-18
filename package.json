@@ -10,7 +10,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "promzard": "^0.2.2",
-    "commander": "^2.2.0"
+    "commander": "^2.2.0",
+    "rc": "^0.4.0"
   },
   "devDependencies": {
     "tap": "^0.4.11"
