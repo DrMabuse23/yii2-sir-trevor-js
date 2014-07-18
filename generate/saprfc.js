@@ -1,8 +1,10 @@
+'use strict';
+
 module.exports = {
-    'name' :prompt('name', ''),
-    'description' :prompt('Description', ''),
-    'connector' :prompt('Connector', ''),
-    'protocol' :prompt('Protocol', ''),
+    'name': prompt('name', ''),
+    'description': prompt('Description', ''),
+    'connector': prompt('Connector', ''),
+    'protocol': prompt('Protocol', ''),
     'properties': {
         'authentication': prompt('Authentication', ''),
         'client': prompt('Client', ''),
@@ -28,30 +30,30 @@ module.exports = {
 
 /*
 var example = {
-    "name": "",
-    "description": "",
-    "connector": "",
-    "protocol": "",
-    "properties": {
-        "authentication": "",
-        "client": "",
-        "user": "",
-        "alias": "",
-        "password": "",
-        "language": "",
-        "sapCookie": "",
-        "x.509Certificate": "",
-        "externalIdDate": "",
-        "externalIdType": "",
-        "programServer": "",
-        "programId": "",
-        "rfcTrace": "",
-        "cpicTrace": "",
-        "repositoryDestination": "",
-        "repositoryUser": "",
-        "repositoryPassword": "",
-        "repositorySncMode": "",
-        "repositoryRoundtripOptimization": ""
+    'name': '',
+    'description': '',
+    'connector': '',
+    'protocol': '',
+    'properties': {
+        'authentication': '',
+        'client': '',
+        'user': '',
+        'alias': '',
+        'password': '',
+        'language': '',
+        'sapCookie': '',
+        'x.509Certificate': '',
+        'externalIdDate': '',
+        'externalIdType': '',
+        'programServer': '',
+        'programId': '',
+        'rfcTrace': '',
+        'cpicTrace': '',
+        'repositoryDestination': '',
+        'repositoryUser': '',
+        'repositoryPassword': '',
+        'repositorySncMode': '',
+        'repositoryRoundtripOptimization': ''
     }
 };
 */

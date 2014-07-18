@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     'name': prompt('Name', ''),
     'description': prompt('Description', ''),
@@ -17,19 +19,19 @@ module.exports = {
 
 /*
 var example = {
-    "name": "",
-    "description": "",
-    "connector": "",
-    "protocol": "",
-    "properties": {
-        "descriptorUrl": "",
-        "userName": "",
-        "password": "",
-        "messageSuffix": "",
-        "soapVersion": "",
-        "adressingFeautre": "",
-        "mtomFeature": "",
-        "oauthProviderType": ""
+    'name': '',
+    'description': '',
+    'connector': '',
+    'protocol': '',
+    'properties': {
+        'descriptorUrl': '',
+        'userName': '',
+        'password': '',
+        'messageSuffix': '',
+        'soapVersion': '',
+        'adressingFeautre': '',
+        'mtomFeature': '',
+        'oauthProviderType': ''
     }
 };
 */

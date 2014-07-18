@@ -1,3 +1,5 @@
+'use strict';
+
 var pz = require('promzard');
 
 var path = require('path');
@@ -5,7 +7,8 @@ var file = path.resolve(__dirname, '../../generate/bikini.js');
 var ctx = { basename: path.basename(path.dirname(file)) };
 
 pz(file, ctx, function (er, res) {
-    if (er)
+    if (er) {
         throw er;
-    console.error(JSON.stringify(res, null, 2))
+    }
+    console.error(JSON.stringify(res, null, 2));
 });

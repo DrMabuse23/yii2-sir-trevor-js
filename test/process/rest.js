@@ -1,11 +1,14 @@
-var pz = require('promzard')
+'use strict';
 
-var path = require('path')
-var file = path.resolve(__dirname, '../../generate/rest.js')
-var ctx = { basename: path.basename(path.dirname(file)) }
+var pz = require('promzard');
+
+var path = require('path');
+var file = path.resolve(__dirname, '../../generate/rest.js');
+var ctx = { basename: path.basename(path.dirname(file)) };
 
 pz(file, ctx, function (er, res) {
-    if (er)
-        throw er
-    console.error(JSON.stringify(res, null, 2))
-})
+    if (er) {
+        throw er;
+    }
+    console.error(JSON.stringify(res, null, 2));
+});

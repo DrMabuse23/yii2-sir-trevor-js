@@ -1,9 +1,11 @@
+'use strict';
+
 var fs = require('fs');
 var tap = require('tap');
 var serverConfig = require('../lib/serverconfig');
 
 var defaultConf = {
-    "default": ""
+    'default': ''
 };
 
 var emptyConf = {
@@ -12,16 +14,16 @@ var emptyConf = {
     _: []
 };
 
-var reset = function() {
+var reset = function () {
     var conf = serverConfig.list();
     fs.writeFileSync(conf.config, JSON.stringify(defaultConf, null, 3));
 };
 
-var _deepCopy = function (conf){
+var _deepCopy = function (conf) {
     return JSON.parse(JSON.stringify(conf));
 };
 
-tap.test('list', function( t ) {
+tap.test('list', function (t) {
 
     reset();
     var config = serverConfig.list();
@@ -31,66 +33,66 @@ tap.test('list', function( t ) {
 
 });
 
-tap.test('add', function( t ) {
+tap.test('add', function (t) {
 
     reset();
     var config = serverConfig.add();
     t.deepEqual(config, emptyConf);
 
-    var config = serverConfig.add({});
+    config = serverConfig.add({});
     var added = _deepCopy(emptyConf);
     t.deepEqual(config, added);
 
     reset();
-    var config = serverConfig.add([]);
-    var added = _deepCopy(emptyConf);
+    config = serverConfig.add([]);
+    added = _deepCopy(emptyConf);
     t.deepEqual(config, added);
 
     reset();
-    var config = serverConfig.add(['a']);
-    var added = _deepCopy(emptyConf);
-    added['default'] = "a";
+    config = serverConfig.add(['a']);
+    added = _deepCopy(emptyConf);
+    added['default'] = 'a';
     delete added._;
-    added['a'] = {
-        "baseurl" : '',
-        "username" : '',
-        "password" : ''
+    added.a = {
+        'baseurl': '',
+        'username': '',
+        'password': ''
     };
     t.deepEqual(config, added);
 
     reset();
-    var config = serverConfig.add(['a', 'b']);
-    var added = _deepCopy(emptyConf);
-    added['default'] = "a";
+    config = serverConfig.add(['a', 'b']);
+    added = _deepCopy(emptyConf);
+    added['default'] = 'a';
     delete added._;
-    added['a'] = {
-        "baseurl" : 'b',
-        "username" : '',
-        "password" : ''
+    added.a = {
+        'baseurl': 'b',
+        'username': '',
+        'password': ''
     };
     t.deepEqual(config, added);
 
     reset();
-    var config = serverConfig.add(['a', 'b', 'c']);
-    var added = _deepCopy(emptyConf);
-    added['default'] = "a";
+    config = serverConfig.add(['a', 'b', 'c']);
+    added = _deepCopy(emptyConf);
+    added['default'] = 'a';
     delete added._;
-    added['a'] = {
-        "baseurl" : 'b',
-        "username" : 'c',
-        "password" : ''
+    added.a = {
+        'baseurl': 'b',
+        'username': 'c',
+        'password': ''
     };
     t.deepEqual(config, added);
 
     reset();
-    var config = serverConfig.add(['a', 'b', 'c', 'd']);
-    var added = _deepCopy(emptyConf);
-    added['default'] = "a";
+    config = serverConfig.add(['a', 'b', 'c', 'd']);
+    added = _deepCopy(emptyConf);
+    added['default'] = 'a';
     delete added._;
-    added['a'] = {
-        "baseurl" : 'b',
-        "username" : 'c',
-        "password" : 'd'
+    added.a = {
+        'baseurl': 'b',
+        'username': 'c',
+        'password': 'd'
     };
     t.deepEqual(config, added);
     reset();
@@ -98,26 +100,26 @@ tap.test('add', function( t ) {
 
 });
 
-tap.test('remove', function( t ) {
+tap.test('remove', function (t) {
 
     reset();
     var config = serverConfig.add(['a', 'b', 'c', 'd']);
     var added = _deepCopy(emptyConf);
-    added['default'] = "a";
+    added['default'] = 'a';
     delete added._;
-    added['a'] = {
-        "baseurl" : 'b',
-        "username" : 'c',
-        "password" : 'd'
+    added.a = {
+        'baseurl': 'b',
+        'username': 'c',
+        'password': 'd'
     };
     t.deepEqual(config, added);
 
-    var config = serverConfig.add(['a1', 'b1', 'c1', 'd1']);
+    config = serverConfig.add(['a1', 'b1', 'c1', 'd1']);
     var added1 = _deepCopy(added);
-    added1['a1'] = {
-        "baseurl" : 'b1',
-        "username" : 'c1',
-        "password" : 'd1'
+    added1.a1 = {
+        'baseurl': 'b1',
+        'username': 'c1',
+        'password': 'd1'
     };
     t.deepEqual(config, added1);
     config = serverConfig.remove(['a1']);
@@ -130,7 +132,7 @@ tap.test('remove', function( t ) {
 
 });
 
-tap.test('default', function( t ) {
+tap.test('default', function (t) {
 
     reset();
     serverConfig.add(['a', 'b', 'c', 'd']);
@@ -141,29 +143,28 @@ tap.test('default', function( t ) {
     t.deepEqual(config, added);
 
     added = serverConfig.setDefault('a1');
-    config['default'] = "a1";
+    config['default'] = 'a1';
     delete config._;
     delete added._;
     t.deepEqual(config, added);
 
     added = serverConfig.setDefault('a2');
-    config['default'] = "a2";
+    config['default'] = 'a2';
     delete config._;
     delete added._;
     t.deepEqual(config, added);
 
-    t.notOk(serverConfig.setDefault(), "missing param");
-    t.notOk(serverConfig.setDefault({}), "wrong param type");
-    t.notOk(serverConfig.setDefault([]), "wrong param type");
-    t.notOk(serverConfig.setDefault(1), "wrong param type");
-    t.notOk(serverConfig.setDefault(0), "wrong param type");
-    t.notOk(serverConfig.setDefault(2), "wrong param type");
-    t.notOk(serverConfig.setDefault(-1), "wrong param type");
-    t.notOk(serverConfig.setDefault(undefined), "wrong param type");
-    t.notOk(serverConfig.setDefault(null), "wrong param type");
-    t.notOk(serverConfig.setDefault('xxxx'), "wrong param");
+    t.notOk(serverConfig.setDefault(), 'missing param');
+    t.notOk(serverConfig.setDefault({}), 'wrong param type');
+    t.notOk(serverConfig.setDefault([]), 'wrong param type');
+    t.notOk(serverConfig.setDefault(1), 'wrong param type');
+    t.notOk(serverConfig.setDefault(0), 'wrong param type');
+    t.notOk(serverConfig.setDefault(2), 'wrong param type');
+    t.notOk(serverConfig.setDefault(-1), 'wrong param type');
+    t.notOk(serverConfig.setDefault(undefined), 'wrong param type');
+    t.notOk(serverConfig.setDefault(null), 'wrong param type');
+    t.notOk(serverConfig.setDefault('xxxx'), 'wrong param');
     reset();
     t.end();
-
 
 });

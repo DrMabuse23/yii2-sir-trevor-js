@@ -1,3 +1,5 @@
+'use strict';
+
 var tap = require('tap');
 var component = require('../lib/component');
 
@@ -17,11 +19,10 @@ tap.test('getComponentList', function (t) {
 
 });
 
-
 tap.test('generate fail', function (t) {
 
-    t.notOk(component.generate(), "generate isn't available");
-    t.notOk(component.generate('xyz'), "generate isn't available");
+    t.notOk(component.generate(), 'generate isn\'t available');
+    t.notOk(component.generate('xyz'), 'generate isn\'t available');
     t.end();
 
 });
