@@ -33,17 +33,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace drmabuse\sirtrevorjs;
 
 use Yii;
+use yii\base\Widget;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\JsExpression;
-use yii\widgets\InputWidget;
 use drmabuse\sirtrevorjs\assets\SirTrevorCompleteAsset;
 
 /**
  * Class SirTrevorWidget
  * @package yii2-sirtrevorjs
  */
-class SirTrevorWidget extends InputWidget {
+class SirTrevorWidget extends Widget {
 
     public $debug           = 'false';
     public $language        = 'en';

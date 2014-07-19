@@ -1,11 +1,11 @@
 {
     "name": "drmabuse/yii2-sir-trevor-js",
     "description": "Yii 2 Sir Trevor JS widget",
-    "keywords": ["yii-2", "nestedset","menu" ],
     "homepage": "http://pascal-brewing.de",
     "license": "BSD-3-Clause",
     "version": "0.0.2",
-    "type":"yii2-widget",
+    "type": "yii2-extension",
+    "keywords": ["yii2","sir trevor js"],
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "dev-master"
