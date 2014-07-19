@@ -75,7 +75,7 @@ class SirTrevorWidget extends Widget {
         }
 
         $this->options['class'] = $this->element;
-        Yii::setAlias('@sirtrevorjs',dirname(__FILE__));
+//        Yii::setAlias('@sirtrevorjs',dirname(__FILE__));
 
         $this->registerAsset();
 

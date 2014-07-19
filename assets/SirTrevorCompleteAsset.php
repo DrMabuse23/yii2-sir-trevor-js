@@ -13,7 +13,7 @@ use yii\web\AssetBundle;
 
 class SirTrevorCompleteAsset extends AssetBundle {
     public $language;
-    public $sourcePath  = '@sirtrevorjs/';
+    public $sourcePath  = '@vendor/drmabuse/';
     /**
      * @var array
      */
