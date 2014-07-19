@@ -1,4 +1,2 @@
-build
-jam
-vendor
-composer.lock
+raw
+node_modules

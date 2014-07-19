@@ -1,13 +1,12 @@
-// Underscore.js 1.4.4
-// ===================
+//     Underscore.js 1.4.4
+//     http://underscorejs.org
+//     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
+//     Underscore may be freely distributed under the MIT license.
 
-// > http://underscorejs.org
-// > (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
-// > Underscore may be freely distributed under the MIT license.
-
-// Baseline setup
-// --------------
 (function() {
+
+  // Baseline setup
+  // --------------
 
   // Establish the root object, `window` in the browser, or `global` on the server.
   var root = this;

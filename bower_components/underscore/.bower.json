@@ -1,30 +1,14 @@
 {
   "name": "underscore",
-  "description": "JavaScript's functional programming helper library.",
-  "homepage": "http://documentcloud.github.com/underscore/",
-  "keywords": [
-    "util",
-    "functional",
-    "server",
-    "client",
-    "browser"
-  ],
-  "author": "Jeremy Ashkenas <jeremy@documentcloud.org>",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/documentcloud/underscore.git"
-  },
+  "homepage": "https://github.com/jashkenas/underscore",
   "version": "1.4.4",
-  "main": [
-    "underscore.js"
-  ],
   "_release": "1.4.4",
   "_resolution": {
     "type": "version",
     "tag": "1.4.4",
-    "commit": "601f1a055a1ef39527dfcdbaf2456633c51d5976"
+    "commit": "484bdb43ec4a9dd6a40e60a2d25317bec7aeb43f"
   },
-  "_source": "git://github.com/components/underscore.git",
-  "_target": "1.4.4",
-  "_originalSource": "git://github.com/components/underscore.git"
+  "_source": "git://github.com/jashkenas/underscore.git",
+  "_target": "~1.4.4",
+  "_originalSource": "underscore"
 }

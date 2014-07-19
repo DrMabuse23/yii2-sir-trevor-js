@@ -24,6 +24,6 @@
     "commit": "89f86d181e1b980939231271e2509835153fff90"
   },
   "_source": "git://github.com/madebymany/sir-trevor-js.git",
-  "_target": "0.3.*",
+  "_target": "*",
   "_originalSource": "sir-trevor-js"
 }
