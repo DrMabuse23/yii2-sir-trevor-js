@@ -3,7 +3,7 @@
 var program = require('commander');
 
 var component = require('./lib/component');
-var serverconfig = require('./lib/serverconfig');
+var serverconfig = require('mcapcli-serverconfig');
 
 function commandInfo(){
     console.log('Version', program._version);
