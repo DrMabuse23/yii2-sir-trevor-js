@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     'name': prompt('Name', ''),
     'description': prompt('Description', ''),
@@ -15,17 +17,17 @@ module.exports = {
 
 /*
 var example = {
-    "name": "",
-    "description": "",
-    "connector": "",
-    "protocol": "",
-    "properties": {
-        "descriptorUrl": "",
-        "userName": "",
-        "password": "",
-        "jsonMediaType": "",
-        "xmlMediaType": "",
-        "oauthProviderType": ""
+    'name': '',
+    'description': '',
+    'connector': '',
+    'protocol': '',
+    'properties': {
+        'descriptorUrl': '',
+        'userName': '',
+        'password': '',
+        'jsonMediaType': '',
+        'xmlMediaType': '',
+        'oauthProviderType': ''
     }
 };
 */

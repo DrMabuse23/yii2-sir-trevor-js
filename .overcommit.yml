@@ -1,0 +1,19 @@
+ALL:
+  enabled: false
+
+PreCommit:
+
+  JsHint:
+    enabled: true
+
+  Jscs:
+    enabled: true
+
+  CssLint:
+    enabled: true
+
+  JsonSyntax:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true

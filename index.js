@@ -1,27 +1,27 @@
-#!/usr/bin/env node
+'use strict';
 
 var program = require('commander');
 
 var component = require('./lib/component');
 var serverconfig = require('mcapcli-serverconfig');
 
-function commandInfo(){
+function commandInfo() {
     console.log('Version', program._version);
 }
 
-function commandNew(){
+function commandNew() {
     console.log('new ...');
 }
 
-function commandExample(){
+function commandExample() {
     console.log('example ...');
 }
 
-function commandServerConfig(){
+function commandServerConfig() {
     serverconfig.parse(program.server, program.args);
 }
 
-function commandLog(){
+function commandLog() {
     console.log('log ' + program.log);
 }
 
@@ -39,17 +39,22 @@ program
     .option('generate <component>', 'Generate a mCAP Component, components: ' + component.getComponentList().join(', '))
     .parse(process.argv);
 
-if (program.generate){
+if (program.generate) {
     component.generate(program.generate);
-} else if(program.info){
+}
+else if (program.info) {
     commandInfo();
-} else if(program.new){
+}
+else if (program.new) {
     commandNew();
-} else if(program.example){
+}
+else if (program.example) {
     commandExample();
-} else if(program.server){
+}
+else if (program.server) {
     commandServerConfig();
-} else if(program.log){
+}
+else if (program.log) {
     commandLog();
 }
 
