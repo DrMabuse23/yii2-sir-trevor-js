@@ -1,0 +1,257 @@
+/**
+ * Created by pascal on 20.07.14.
+ */
+/*
+ An example of a SirTrevor.Block
+ --
+ Author: C J Bell @ madebymany
+ */
+
+SirTrevor.Blocks.Gallery = (function(){
+
+    return SirTrevor.Block.extend({
+
+        // String; Names the block
+        // Note – please use underscores when naming
+        // Eg example_block should be ExampleBlock
+        type: 'gallery',
+
+        // Function; the title displayed in the toolbar
+        // Can return a translated string (if required)
+        title: function() {
+            return i18n.t('blocks:gallery:title');
+//            return "Media";
+        },
+
+        // Boolean; show this blockType of the toolbar
+        toolbarEnabled: true,
+
+        // Block Mixins
+        // Allow different UI components / methods to be mixed into the block
+
+        // Enable drop functionality on the block
+        droppable: true,
+
+        // Enable paste functionality (to paste URLS etc)
+        pastable: false,
+
+        // Enable an upload button to be added
+        // Mixins Ajaxable automatically
+        // Exposes an uploader method
+        // Usage: this.uploader(file, success, failure)
+        uploadable: false,
+
+        // Enable queued remote fetching
+        // Exposes a small wrapper around the $.ajax method
+        // Usage: this.fetch(ajaxOptions, success, failure)
+        fetchable: false,
+
+        // Add an ajax queue to the block
+        // Added to uploadable & fetchable automatically
+        ajaxable: false,
+
+        // Overwritable mixin options:
+        // --
+        drop_options: {
+            // String; (can use underscore template tags)
+            // Defines the HTML for the dropzone template
+            //html: "<div class='st-block__dropzone'></div>",
+            // Boolean;
+            // On re-order, should we re-render this item.
+            // Useful for when re-ordering iframes (like Twitter)
+            re_render_on_reorder: false
+        },
+
+        paste_options: {
+            // String; (can use underscore template tags)
+            // Defines the HTML for the paste template
+            html: "<input type=\"text\" class=\"st-paste-block\">"
+        },
+
+        upload_options: {
+            // String; (can use underscore template tags)
+            // Defines the HTML for the upload template
+            html: "<input type=\"file\" type=\"st-file-upload\">"
+        },
+
+        formattable: false,
+
+        // String or Function; The HTML for the inner portion of the editor block
+        // In this example, the editorHTML is an editable input div (like we use for a TextBlock)
+
+        // Classes:
+        // st-required   – indicates this input must be present to pass validation
+        // st-text-block – gives the block the ability to use the formatting controls
+
+        editorHTML: function() {
+            return "<div class='st-gallery-editor'></div>"
+        },
+
+        // Element shorthands
+        // --
+        // this.$el
+        // this.el
+        // this.$inner                  (the inner container for the block)
+        // this.$editor                 (contains all the UI inputs for the block)
+        // this.$inputs                 (contains all the UI inputs for blocks that are uploadable / droppable / pastable)
+        // this.getTextBlock()          (shorthand for this.$el.find('.st-text-block'))
+        // this.$(selector)             (shorthand for this.$el.find(selector))
+
+        // Validations
+        // --
+        // Required fields (with .st-required class) always get validted
+        // Called using the validateField method
+        // Set a data-st-name="Field Name" on your required inputs to use it in the validation fail message
+
+        // Array; defines custom validator methods to call
+        // validations: ['myCustomValidator'],
+
+        // // Example custom validator
+        // myCustomValidator: function() {
+        //   var field = this.$('.a-field');
+
+        //   if (field.val() === 'herp derp') {
+        //     this.setError(field, "A validation fail message");
+        //   }
+        // },
+
+        // Function; Executed on render of the block if some data is provided.
+        // LoadData gives us a means to convert JSON data into the editor dom
+        // In this example we convert the text from markdown to HTML and show it inside the element
+        loadData: function(data){
+            var sir = this
+            gallery = this.$("div.st-gallery-editor");
+            gallery.html("");
+            if (data && data.length > 0) {
+                _.each(data, sir.appendImageToGallery, this);
+            }
+            this.$inputs.show();
+            if (data.length >= 1){
+                this.$editor.show();
+            }
+        },
+
+        // Function; Executed on save of the block, once the block is validated
+        // toData expects a way for the block to be transformed from inputs into structured data
+        // The default toData function provides a pretty comprehensive way of turning data into JSON
+        // In this example we take the text data and save it to the data object on the block
+        // toData: function(){
+        //   // return true;
+        //   // var dataObj = {};
+
+        //   // var content = this.getTextBlock().html();
+        //   // if (content.length > 0) {
+        //   //   dataObj.text = SirTrevor.toMarkdown(content, this.type);
+        //   // }
+
+        //   // this.setData(dataObj);
+        // },
+
+        // Function; Returns true or false whether there is data in the block
+        isEmpty: function() {
+            return _.isEmpty(this.saveAndGetData()); // Default implementation
+        },
+
+        // Other data functions
+        // --
+        // getData            – returns the data in the store
+        // save               - Invokes the toData method
+        // saveAndReturnData  - Saves and returns the entire store
+        // saveAndGetData     - Save and only return the data part of the store
+
+
+        // Function; Hook executed at the end of the block rendering method.
+        // Useful for initialising extra pieces of UI or binding extra events.
+        // In this example we add an extra button, just because.
+        onBlockRender: function() {
+            //console.log(this.getData());
+            this.$inputs.append("<div class='st-gallery-browser'></div>");
+            browser = this.$("div.st-gallery-browser");
+            this.fetchGallery(browser);
+            // this.$editor.append($('<button>', {
+            //   click: function() {
+            //     alert('Yo dawg, you clicked my button');
+            //   }
+            // }));
+        },
+
+        // Function; Optional hook method executed before the rendering of a block
+        // Beware, $el and any shorthand element variables won't be setup here.
+        beforeBlockRender: function() {},
+
+        // Function; Executed once content has been dropped onto the dropzone of this block
+        // Only required if you have enabled dropping and have provided a dropzone for this block
+        // Always is passed the ev.transferData object from the drop
+        // Please see the image block (https://github.com/madebymany/sir-trevor-js/blob/master/src/blocks/image.js) for an example
+        onDrop: function(transferData) {
+            var sir = this;
+            transferData.items[0].getAsString(function(e){
+                sir.addImage(e, sir);
+            });
+        },
+
+        addImage: function(image, sir) {
+            if (sir.isEmpty()){
+                new_data = [JSON.parse(image)];
+            } else {
+                new_data = _.toArray(sir.getData());
+                new_data.push(JSON.parse(image));
+            }
+            sir.setData(new_data);
+            sir.loadData(new_data);
+        },
+
+        // Function; executed once content has been pasted into a pastable block
+        // See the tweet block as an example (https://github.com/madebymany/sir-trevor-js/blob/master/src/blocks/tweet.js)
+        onContentPasted: function(event) {},
+
+        // Block level messages
+        // --
+        // addMessage(msg, additionalClass)
+        // Adds a new message onto the block
+
+        // resetMessages()
+        // Clears all existing messages
+
+        // Helper methods
+        // --
+        // loading()
+        // ready()
+        // hasTextBlock()
+        // remove()
+
+        // Function; Any extra markdown parsing can be defined in here.
+        // Returns; String (Required)
+        toMarkdown: function(markdown) {
+            return markdown.replace(/^(.+)$/mg,"> $1");
+        },
+
+        // Function; Any extra HTML parsing can be defined in here.
+        // Returns; String (Required)
+        // toHTML: function(html) {
+        //   return html;
+        // },
+
+        fetchGallery: function(gallery){
+            var sir = this;
+            $.get("http://api.pr.co/v1/pressrooms/sterkonline.pr.co/images?limit=6", function(response){
+                response["data"].forEach(function(image){
+                    sir.appendImage(gallery, image["sizes"]["large"]["url"], image["sizes"]["original"]["url"]);
+                });
+            });
+        },
+
+        appendImage: function(gallery, url, download){
+            thumbnail = $('<div>', {draggable: "true",class: 'thumbnail_wrap', data: {url:url, download: download }}).appendTo(gallery);
+            image = $('<img>', {draggable: "false",class: 'thumbnail', src: url}).appendTo(thumbnail);
+        },
+
+        appendImageToGallery: function(image){
+            gallery = this.$("div.st-gallery-editor");
+            thumbnail = $('<div>', {draggable: "true",class: 'thumbnail_wrap', data: {url:image.url, download: image.download }}).appendTo(gallery);
+            image = $('<img>', {draggable: "false",class: 'thumbnail', src: image.url}).appendTo(thumbnail);
+        }
+    });
+
+})();
+

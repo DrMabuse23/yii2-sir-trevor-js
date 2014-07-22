@@ -6,25 +6,26 @@
  * Time: 08:27
  */
 
-namespace drmabuse\sirtrevorjs\assets;
+namespace drmabuse\blog\extensions\sirtrevorjs\assets;
 //const VERSION = '0.0.2';
 use Yii;
 use yii\web\AssetBundle;
 
 class SirTrevorCompleteAsset extends AssetBundle {
     public $language;
-    public $sourcePath  = '@sirtrevorjs/';
+    public $sourcePath  = '@vendor/drmabuse/yii2-blog/extensions/sirtrevorjs/dist';
     /**
      * @var array
      */
     public $css = [
-        'dist/yii2-sirtrevorjs-0.0.2.min.css',
+        'yii2-sirtrevorjs-0.0.2.min.css',
     ];
     /**
      * @var array
      */
     public $js = [
-        "dist/yii2-sirtrevorjs-0.0.2.min.js"
+        "yii2-sirtrevorjs-0.0.2.min.js",
+        "locales/de.js"
     ];
     /**
      * @var array
@@ -55,9 +56,9 @@ class SirTrevorCompleteAsset extends AssetBundle {
     {
         $language = $this->language ? $this->language : Yii::$app->language;
 
-        if ($language !== 'en' && in_array($language,$this->availableLanguages)) {
-            $this->js[] = '/../bower_components/sir-trevor-js/locales/' . $language . '.js';
-        }
+//        if ($language !== 'de' && in_array($language,$this->availableLanguages)) {
+//            $this->js[] = '/../bower_components/sir-trevor-js/locales/' .  'de.js';
+//        }
 
         parent::registerAssetFiles($view);
     }

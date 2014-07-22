@@ -42,7 +42,7 @@ Thumbs.db
 #Composer
 #########
 composer.phar
-vendor/
+vendor
 composer.lock
 
 #Compass
@@ -68,7 +68,7 @@ build
 .grunt
 
 node_modules
-
+bower_components
 
 # PHPSTORM
 #########

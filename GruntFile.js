@@ -6,13 +6,19 @@ module.exports = function(grunt) {
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
-                report: 'min'
+                report: 'min',
+
+                compress:false
             },
             complete: {
                 src: [
                     '<%= bower %>underscore/underscore.js',
                     '<%= bower %>Eventable/eventable.js',
-                    '<%= bower %>sir-trevor-js/sir-trevor.js'
+                    'scripts/sir-trevor.js',
+                    'scripts/CodeBlock.js',
+                    'scripts/ColumnsBlock.js',
+                    'scripts/ImageCaption.js',
+
                 ],
                 dest: '<%= dist %>/<%= pkg.name %>-<%= pkg.version %>.min.js'
             }
@@ -23,7 +29,7 @@ module.exports = function(grunt) {
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
                 },
                 files: {
-                    '<%= dist %>/<%= pkg.name %>-<%= pkg.version %>.min.css': [ '<%= bower %>sir-trevor-js/**/*.css']
+                    '<%= dist %>/<%= pkg.name %>-<%= pkg.version %>.min.css': [ 'styles/**/*.css']
                 }
             }
         },
