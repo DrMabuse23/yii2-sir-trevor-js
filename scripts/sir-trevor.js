@@ -511,9 +511,9 @@
         var uid  = [block.blockID, (new Date()).getTime(), 'raw'].join('-');
         var data = new FormData();
 
-        data.append('PostContent[name]', file.name);
-        data.append('PostContent[file]', file);
-        data.append('PostContent[uid]', uid);
+        data.append('attachment[name]', file.name);
+        data.append('attachment[file]', file);
+        data.append('attachment[uid]', uid);
 
         block.resetMessages();
 
