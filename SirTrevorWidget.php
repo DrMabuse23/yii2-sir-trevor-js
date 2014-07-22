@@ -220,7 +220,7 @@ class SirTrevorWidget extends InputWidget
             return $this->blockTypesFull;
         }
 
-        return $this->blockTypesFull;
+        return $this->blockTypes;
     }
 
     /**
