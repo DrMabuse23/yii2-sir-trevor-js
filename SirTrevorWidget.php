@@ -121,19 +121,6 @@ class SirTrevorWidget extends InputWidget
     public $options;
 
     /**
-     * the save button options
-     *
-     * @var array
-     */
-    public $saveButtonOptions = [];
-
-    /**
-     * the css class from the save button
-     * @var string
-     */
-    public $saveButtonCssClass = 'btn btn-primary';
-
-    /**
      * like __construct
      * @throws \yii\base\InvalidConfigException
      */
@@ -169,46 +156,13 @@ class SirTrevorWidget extends InputWidget
      */
     protected function renderInput()
     {
-        $input = Html::tag(
-            'div',
-            Html::button(
-                Glyph::icon(Glyph::ICON_FLOPPY_SAVE) . ' save',
-                $this->saveButtonOptions
-            )
-        );
-
         if ($this->hasModel()) {
-            $input .= Html::activeTextArea($this->model, $this->attribute, $this->options);
+            $input = Html::activeTextArea($this->model, $this->attribute, $this->options);
         } else {
-            $input .= Html::textArea($this->name, $this->value, $this->options);
+            $input = Html::textArea($this->name, $this->value, $this->options);
         }
-
 
         return $input;
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getSaveButtonOptions()
-    {
-        if (count($this->saveButtonOptions) < 1) {
-            $this->saveButtonOptions = [
-                'type'  => 'button',
-                'id'    => uniqid('sir-trevor-save-button-'),
-                'class' => $this->saveButtonCssClass
-            ];
-        }
-        return $this->saveButtonOptions;
-    }
-
-    /**
-     * @param $saveButtonOptions
-     */
-    public function setSaveButtonOptions($saveButtonOptions)
-    {
-        $this->saveButtonOptions = $saveButtonOptions;
     }
 
     /**
@@ -274,25 +228,11 @@ class SirTrevorWidget extends InputWidget
      */
     public function getInitJs()
     {
-        $this->getSaveButtonOptions();
-
         if (is_null($this->initJs)) {
-
-            if (!isset($this->saveButtonOptions['id'])) {
-                throw new HttpException(1, 'save button id is required', 400);
-            }
-
             $this->initJs = 'SirTrevor.DEBUG = ' . $this->debug . ';' . PHP_EOL;
             $this->initJs .= 'SirTrevor.LANGUAGE = "' . $this->language . '";' . PHP_EOL;
             $this->initJs .= 'SirTrevor.setDefaults({ uploadUrl: "' . $this->getImageUploadUrl() . '" });' . PHP_EOL;
             $this->initJs .= "window.editor = new SirTrevor.Editor(" . $this->getBlockOptions() . ");" . PHP_EOL;
-            $this->initJs .= "
-                $('#{$this->saveButtonOptions['id']}').on('click',
-                    function() {
-                        SirTrevor.getInstance().store('save');
-                        console.log('store saved');
-                    }
-            );" . PHP_EOL;
         }
 
         return $this->initJs;
@@ -305,6 +245,5 @@ class SirTrevorWidget extends InputWidget
     {
         $this->initJs = $initJs;
     }
-
 
 }
