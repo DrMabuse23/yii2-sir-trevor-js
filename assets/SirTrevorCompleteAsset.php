@@ -6,14 +6,14 @@
  * Time: 08:27
  */
 
-namespace drmabuse\blog\extensions\sirtrevorjs\assets;
+namespace drmabuse\sirtrevorjs\assets;
 //const VERSION = '0.0.2';
 use Yii;
 use yii\web\AssetBundle;
 
 class SirTrevorCompleteAsset extends AssetBundle {
     public $language;
-    public $sourcePath  = '@vendor/drmabuse/yii2-blog/extensions/sirtrevorjs/dist';
+    public $sourcePath  = '@vendor/drmabuse/yii2-sir-trevor-js/dist';
     /**
      * @var array
      */

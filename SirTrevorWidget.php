@@ -27,7 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace drmabuse\blog\extensions\sirtrevorjs;
+namespace drmabuse\sirtrevorjs;
 
 use common\helpers\Glyph;
 use Yii;
@@ -38,7 +38,7 @@ use yii\helpers\Url;
 use yii\helpers\VarDumper;
 use yii\web\HttpException;
 use yii\web\JsExpression;
-use drmabuse\blog\extensions\sirtrevorjs\assets\SirTrevorCompleteAsset;
+use drmabuse\sirtrevorjs\assets\SirTrevorCompleteAsset;
 use yii\web\View;
 use yii\widgets\InputWidget;
 
@@ -159,7 +159,7 @@ class SirTrevorWidget extends InputWidget
     private function registerAsset()
     {
         SirTrevorCompleteAsset::register($this->view)->language = $this->language;
-        $this->view->registerJs('$(function(){' . $this->getInitJs() . '});',View::POS_END);
+        $this->view->registerJs('$(function(){' . $this->getInitJs() . '});', View::POS_END);
     }
 
     /**
@@ -278,8 +278,9 @@ class SirTrevorWidget extends InputWidget
 
         if (is_null($this->initJs)) {
 
-            if(!isset($this->saveButtonOptions['id']))
-                throw new HttpException(1,'save button id is required',400);
+            if (!isset($this->saveButtonOptions['id'])) {
+                throw new HttpException(1, 'save button id is required', 400);
+            }
 
             $this->initJs = 'SirTrevor.DEBUG = ' . $this->debug . ';' . PHP_EOL;
             $this->initJs .= 'SirTrevor.LANGUAGE = "' . $this->language . '";' . PHP_EOL;
@@ -306,8 +307,4 @@ class SirTrevorWidget extends InputWidget
     }
 
 
-
-
-
-
-} 
+}
