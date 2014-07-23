@@ -19,7 +19,7 @@ npm install mcapcli
 ## Usage
 
 ```
-node index.js [options]
+cli.js [options]
 
    Options:
 

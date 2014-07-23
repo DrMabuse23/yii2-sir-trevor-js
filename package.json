@@ -1,14 +1,14 @@
 {
   "name": "mcapcli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Commandline Interface to generate mCAP Applications",
-  "main": "index.js",
+  "main": "cli.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "cli.js",
     "test": "tap test/*.js"
   },
   "bin": {
-    "mcapcli": "node index.js"
+    "mcapcli": "node cli.js"
   },
     
   "author": "mwaylabs",
