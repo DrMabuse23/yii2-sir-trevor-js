@@ -4,6 +4,7 @@
   "description": "Commandline Interface to generate mCAP Applications",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "tap test/*.js"
   },
   "author": "mwaylabs",
