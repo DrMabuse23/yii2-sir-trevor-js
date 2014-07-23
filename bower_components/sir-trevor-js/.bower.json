@@ -1,6 +1,5 @@
 {
   "name": "sir-trevor-js",
-  "version": "0.3.2",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -16,14 +15,13 @@
     "Eventable": "~1.0.1",
     "jquery": "~1.9.1"
   },
-  "homepage": "https://github.com/madebymany/sir-trevor-js",
-  "_release": "0.3.2",
+  "homepage": "https://github.com/schmunk42/sir-trevor-js",
+  "_release": "9c3060d96a",
   "_resolution": {
-    "type": "version",
-    "tag": "v0.3.2",
-    "commit": "89f86d181e1b980939231271e2509835153fff90"
+    "type": "commit",
+    "commit": "9c3060d96ae4e9bb30dd3e5ea15766679b5f8f24"
   },
-  "_source": "git://github.com/madebymany/sir-trevor-js.git",
-  "_target": "*",
-  "_originalSource": "sir-trevor-js"
+  "_source": "https://github.com/schmunk42/sir-trevor-js.git",
+  "_target": "9c3060d96ae4e9bb30dd3e5ea15766679b5f8f24",
+  "_originalSource": "https://github.com/schmunk42/sir-trevor-js.git"
 }

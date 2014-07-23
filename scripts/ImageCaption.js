@@ -11,7 +11,7 @@
 		icon_name: 'image',
 
 		loadData: function(data){
-		  this.$editor.html($('<img>', { src: data.file.url })).show();
+            this.$editor.html($('<img>', { src: data.file.url })).show();
 		  this.$editor.append($('<input>', {type: 'text', class: 'st-input-string js-caption-input', name: 'text', placeholder: 'Caption', style: 'width: 100%; margin-top:10px; text-align: center;', value: data.text}));
 		},
 
@@ -22,6 +22,12 @@
 		    this.onDrop(ev.currentTarget);
 		  }, this));
 		},
+
+        onUploadError : function(jqXHR){
+            this.addMessage(jqXHR.statusText);
+            this.addMessage(i18n.t('blocks:image:upload_error'));
+            this.ready();
+        },
 
 		onDrop: function(transferData){
 		  var file = transferData.files[0],
@@ -38,12 +44,10 @@
 		      file,
 		      function(data) {
 		        this.setData(data);
+                this.addMessage('File uploaded.');
 		        this.ready();
 		      },
-		      function(error){
-		        this.addMessage(i18n.t('blocks:image:upload_error'));
-		        this.ready();
-		      }
+              this.onUploadError
 		    );
 		  }
 		}

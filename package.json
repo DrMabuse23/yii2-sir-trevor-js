@@ -10,10 +10,11 @@
   "license": "BSD3",
   "devDependencies": {
     "grunt": "~0.4.2",
-    "grunt-contrib-uglify": "~0.3.2",
     "grunt-bumpup": "~0.5.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-uglify": "~0.3.2",
     "grunt-release": "*",
-    "grunt-replace": "*",
-    "grunt-contrib-cssmin": "~0.7.0"
+    "grunt-replace": "*"
   }
 }
