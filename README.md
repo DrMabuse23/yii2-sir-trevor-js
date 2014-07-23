@@ -5,15 +5,15 @@ Commandline Interface to generate mCAP Applications
 ## Install
 
 ```
-git clone https://github.com/mwaylabs/mcapcli.git
-cd mcapcli
+git clone https://github.com/mwaylabs/mcap-cli.git
+cd mcap-cli
 npm install
 ```
 
 or
 
 ```
-npm install mcapcli
+npm install mcap-cli
 ```
 
 ## Usage
