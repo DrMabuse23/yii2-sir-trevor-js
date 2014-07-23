@@ -1,5 +1,5 @@
 {
-  "name": "mcapcli",
+  "name": "mcap-cli",
   "version": "0.0.1",
   "description": "Commandline Interface to generate mCAP Applications",
   "main": "cli.js",
@@ -17,7 +17,7 @@
     "promzard": "^0.2.2",
     "commander": "^2.2.0",
     "rc": "^0.4.0",
-    "mcapcli-serverconfig": "0.0.0"
+    "mcap-rc": "0.0.0"
   },
   "devDependencies": {
     "tap": "^0.4.11"
