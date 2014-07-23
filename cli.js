@@ -4,7 +4,7 @@
 var program = require('commander');
 
 var component = require('./lib/component');
-var serverconfig = require('mcap-rc');
+var serverconfig = require('mcaprc');
 
 function commandInfo() {
     console.log('Version', program._version);

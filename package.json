@@ -17,7 +17,7 @@
     "promzard": "^0.2.2",
     "commander": "^2.2.0",
     "rc": "^0.4.0",
-    "mcap-rc": "0.0.0"
+    "mcaprc": "0.0.0"
   },
   "devDependencies": {
     "tap": "^0.4.11"
