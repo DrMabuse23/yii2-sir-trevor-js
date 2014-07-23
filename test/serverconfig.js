@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var tap = require('tap');
-var serverConfig = require('mcapcli-serverconfig');
+var serverConfig = require('mcap-rc');
 
 var defaultConf = {
     'default': ''
