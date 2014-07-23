@@ -1,20 +1,27 @@
 yii2-sir-trevor-js
 ==================
 
-A Module for sir-trevor-js
+A sir-trevor-js input widget for Yii 2 Framework.
 
-***Yii2 Sir Trevor JS Widget***
+## Get Started
 
-    //using composer
-    composer update
+Installation using composer:
 
-    //commands
-    npm update
-    bower update
+    composer install drmabuse/yii2-sir-trevor-js:"*"
 
+## Basic Usage
 
-### Example File Upload
+    <?=
+    $form->field(
+        $model,
+        'attributeName')->widget(\drmabuse\sirtrevorjs\SirTrevorWidget::className(),
+        ['imageUploadUrl' => \yii\helpers\Url::to(['file/sir-trevor-upload'])]
+    )
+    ?>
 
+## Advanced Usage
+
+### Image Block - Example File Upload Handler
 
     /**
      * Action for file uploads via sir-trevor image block from SirTrevorWidget (input widget)
@@ -44,3 +51,20 @@ A Module for sir-trevor-js
             echo "File exists or root folder '{$savePath}' not found.";
         }
     }
+
+### Developer Info
+
+If you want to compile/build from the latest javascript sources, use the following commands to get the JavaScript
+dependencies.
+
+    npm update
+    bower update
+
+To create the asset files run
+
+    grunt
+
+Minimized files are created with:
+
+    grunt min
+

@@ -3,7 +3,6 @@
     "description": "Yii 2 Sir Trevor JS widget",
     "homepage": "https://github.com/DrMabuse23/yii2-sir-trevor-js",
     "license": "BSD-3-Clause",
-    "version": "0.0.2",
     "type": "yii2-extension",
     "keywords": [
         "yii2",
@@ -13,7 +12,11 @@
         {
             "name": "Pascal Brewing",
             "email": "pascalbrewing@gmail.com"
-        }
+        },
+        {
+            "name": "Tobias Munk",
+            "email": "schmunk@usrbin.de"
+        }        
     ],
     "autoload": {
         "psr-4": {
