@@ -1,26 +1,23 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        bower: 'bower_components/',
+        dist: 'assets/',
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
                 report: 'min',
-
-                compress:false
+                compress: true
             },
             complete: {
                 src: [
-                    '<%= bower %>underscore/underscore.js',
-                    '<%= bower %>Eventable/eventable.js',
-                    'scripts/sir-trevor.js',
-                    'scripts/CodeBlock.js',
-                    'scripts/ColumnsBlock.js',
-                    'scripts/ImageCaption.js',
-
+                    '<%= dist %>/grunt/<%= pkg.name %>-<%= pkg.version %>.js',
+                    '<%= dist %>/grunt/locales/*',
+                    '<%= dist %>/blocks/*'
                 ],
-                dest: '<%= dist %>/<%= pkg.name %>-<%= pkg.version %>.min.js'
+                dest: '<%= dist %>/grunt/<%= pkg.name %>-<%= pkg.version %>.min.js'
             }
         },
         cssmin: {
@@ -29,7 +26,7 @@ module.exports = function(grunt) {
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
                 },
                 files: {
-                    '<%= dist %>/<%= pkg.name %>-<%= pkg.version %>.min.css': [ 'styles/**/*.css']
+                    '<%= dist %>/grunt/<%= pkg.name %>-<%= pkg.version %>.min.css': [ '<%= dist %>/grunt/*.css']
                 }
             }
         },
@@ -38,37 +35,53 @@ module.exports = function(grunt) {
                 dateformat: 'YYYY-MM-DD HH:mm',
                 normalize: false
             },
-            files: ['package.json', 'composer.json','bower.json']
+            files: ['package.json', 'composer.json', 'bower.json']
+        },
+        copy: {
+            main: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= bower %>/sir-trevor-js',
+                        src: ['locales/**'],
+                        dest: 'assets/grunt',
+                        filter: 'isFile'
+                    }
+                ]
+            }
         },
         concat: {
             options: {
             },
-            dist: {
+            js: {
                 src: [
                     '<%= bower %>underscore/underscore.js',
                     '<%= bower %>Eventable/eventable.js',
-                    'scripts/sir-trevor.js',
-                    'scripts/CodeBlock.js',
-                    'scripts/ColumnsBlock.js',
-                    'scripts/ImageCaption.js',
-
+                    '<%= bower %>sir-trevor-js/sir-trevor.js'
                 ],
-                dest: '<%= dist %>/<%= pkg.name %>-<%= pkg.version %>.min.js'
+                dest: '<%= dist %>/grunt/<%= pkg.name %>-<%= pkg.version %>.js'
+            },
+            css: {
+                src: [
+                    '<%= bower %>sir-trevor-js/sir-trevor.css',
+                    '<%= bower %>sir-trevor-js/sir-trevor-icons.css'
+                ],
+                dest: '<%= dist %>/grunt/<%= pkg.name %>-<%= pkg.version %>.css'
             }
-        },
-        bower:  'bower_components/',
-        dist:   'dist'
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-bumpup');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.event.on('watch', function(action, filepath) {
+    grunt.event.on('watch', function (action, filepath) {
         grunt.log.writeln(filepath + ' has ' + action);
     });
 
-    grunt.registerTask('default', ['concat','cssmin']);
+    grunt.registerTask('default', ['concat', 'copy']);
+    grunt.registerTask('min', ['uglify', 'cssmin']);
 
 };

@@ -1,6 +1,6 @@
 {
   "name": "yii2-sirtrevorjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "yii2-sirtrevorjs as yii2 module",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "grunt": "~0.4.2",
     "grunt-bumpup": "~0.5.0",
     "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-release": "*",

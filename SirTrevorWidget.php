@@ -30,6 +30,8 @@
 namespace drmabuse\sirtrevorjs;
 
 use common\helpers\Glyph;
+use drmabuse\sirtrevorjs\assets\SirTrevorAsset;
+use drmabuse\sirtrevorjs\assets\SirTrevorMinAsset;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
@@ -145,7 +147,8 @@ class SirTrevorWidget extends InputWidget
      */
     private function registerAsset()
     {
-        SirTrevorCompleteAsset::register($this->view)->language = $this->language;
+        SirTrevorAsset::register($this->view)->language = $this->language;
+        //SirTrevorMinAsset::register($this->view)->language = $this->language;
         $this->view->registerJs('$(function(){' . $this->getInitJs() . '});', View::POS_END);
     }
 
