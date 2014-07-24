@@ -66,7 +66,7 @@ class SirTrevorAsset extends AssetBundle
     /**
      * @var bool
      */
-    public $forceCopy = true;
+    public $forceCopy = false;
 
     /**
      *
@@ -75,14 +75,14 @@ class SirTrevorAsset extends AssetBundle
 
         $language   = $this->options['language'];
         $mode       = $this->options['assetMode'];
-        $langFile   = is_file($this->sourcePath."/dist/scripts/locales/{$language}.js")?"/dist/scripts/locales/{$language}.js":null;
+        $langFile   = is_file($this->sourcePath."/dist/scripts/locales/{$language}.js")?"dist/scripts/locales/{$language}.js":null;
 
-        if($mode === 'min' && $language !== 'en' && $langFile !== null){
-            $this->js = ArrayHelper::merge($this->js,$langFile);
+        if($mode === 'min' && $language !== 'en' && $langFile !== null ){
+            $this->js = ArrayHelper::merge($this->js,[$langFile]);
         }else{
             $this->js = $this->dev_js;
-            if($language !== 'en' && is_file($this->sourcePath."/dist/scripts/locales/{$language}.js") ){
-                $this->js = ArrayHelper::merge($this->js,["dist/scripts/locales/{$language}.js"]);
+            if( $language !== 'en' && $langFile !== null ){
+                $this->js = ArrayHelper::merge($this->js,[$langFile]);
             }
         }
 
