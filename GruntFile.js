@@ -9,6 +9,28 @@ module.exports = function (grunt) {
         clean:{
           dist:["<%= dist %>"]
         },
+        replace: {
+            readme: {
+                src: ['README.md'],
+                overwrite: true,
+                replacements: [
+                    {
+                        from: /Version \d{1,1}\.\d{1,2}\.\d{1,2}/g,
+                        to: 'Version <%= pkg.version %>'
+                    }
+                ]
+            },
+            sirtrevorwidget_php: {
+                src: ['SirTrevorWidget.php'],
+                overwrite: true,
+                replacements: [
+                    {
+                        from: /\d{1,1}\.\d{1,2}\.\d{1,2}/g,
+                        to: '<%= pkg.version %>'
+                    }
+                ]
+            }
+        },
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
@@ -23,7 +45,7 @@ module.exports = function (grunt) {
             },
             vendor: {
                 src: [
-                    '<%= dist %>/scripts/vendor/vendor-<%= pkg.name %>-<%= pkg.version %>.js',
+                    '<%= dist %>/scripts/lib/vendor-<%= pkg.name %>-<%= pkg.version %>.js',
                     '<%= dist %>/scripts/blocks-<%= pkg.name %>-<%= pkg.version %>.js'
                 ],
                 dest: '<%= dist %>/scripts/<%= pkg.name %>-<%= pkg.version %>.min.js'
@@ -79,7 +101,7 @@ module.exports = function (grunt) {
                             'Eventable/eventable.js',
                             'sir-trevor-js/sir-trevor.js'
                         ],
-                        dest: '<%= web %>/scripts/vendor',
+                        dest: '<%= web %>/scripts/lib',
                         filter: 'isFile'
                     }
                 ]
@@ -95,7 +117,7 @@ module.exports = function (grunt) {
                     '<%= bower %>/Eventable/eventable.js',
                     '<%= bower %>/sir-trevor-js/sir-trevor.js'
                 ],
-                dest: '<%= dist %>/scripts/vendor/vendor-<%= pkg.name %>-<%= pkg.version %>.js'
+                dest: '<%= dist %>/scripts/lib/vendor-<%= pkg.name %>-<%= pkg.version %>.js'
             },
             blocks: {
                 src: [
@@ -120,12 +142,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-text-replace');
 
     grunt.event.on('watch', function (action, filepath) {
         grunt.log.writeln(filepath + ' has ' + action);
     });
 
     grunt.registerTask('default', ['clean','copy', 'concat','uglify','cssmin']);
+    grunt.registerTask('semantic', ['bumpup','replace','default']);
     grunt.registerTask('min', ['uglify', 'cssmin']);
 
 };

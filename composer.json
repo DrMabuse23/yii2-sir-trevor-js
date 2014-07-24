@@ -16,7 +16,7 @@
         {
             "name": "Tobias Munk",
             "email": "schmunk@usrbin.de"
-        }        
+        }
     ],
     "autoload": {
         "psr-4": {
