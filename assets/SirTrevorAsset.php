@@ -8,7 +8,6 @@
 
 namespace drmabuse\sirtrevorjs\assets;
 
-//const VERSION = '0.0.2';
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
@@ -34,13 +33,13 @@ class SirTrevorAsset extends AssetBundle
      * @var array
      */
     public $css = [
-        "dist/styles/yii2-sirtrevorjs-0.0.3.css",
+        "dist/styles/yii2-sirtrevorjs-0.0.5.css",
     ];
     /**
      * @var array
      */
     public $js = [
-        "dist/scripts/yii2-sirtrevorjs-0.0.3.min.js"
+        "dist/scripts/yii2-sirtrevorjs-0.0.5.min.js"
     ];
 
     /**

@@ -115,5 +115,10 @@ To create the asset files run
 
     grunt default
     
+To create a new version
+
+    grunt bumpup
+    grunt semantic
+    
 
 

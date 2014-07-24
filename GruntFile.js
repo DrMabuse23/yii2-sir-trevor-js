@@ -29,6 +29,26 @@ module.exports = function (grunt) {
                         to: '<%= pkg.version %>'
                     }
                 ]
+            },
+            asset_php: {
+                src: ['assets/SirTrevorAsset.php'],
+                overwrite: true,
+                replacements: [
+                    {
+                        from: /dist\/styles\/yii2-sirtrevorjs-\d{1,1}\.\d{1,2}\.\d{1,2}/g,
+                        to: 'dist/styles/yii2-sirtrevorjs-<%= pkg.version %>'
+                    }
+                ]
+            },
+            asset_php_js: {
+                src: ['assets/SirTrevorAsset.php'],
+                overwrite: true,
+                replacements: [
+                    {
+                        from: /dist\/scripts\/yii2-sirtrevorjs-\d{1,1}\.\d{1,2}\.\d{1,2}/g,
+                        to: 'dist/scripts/yii2-sirtrevorjs-<%= pkg.version %>'
+                    }
+                ]
             }
         },
         uglify: {
@@ -149,7 +169,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', ['clean','copy', 'concat','uglify','cssmin']);
-    grunt.registerTask('semantic', ['bumpup','replace','default']);
+    grunt.registerTask('semantic', ['replace','default']);
     grunt.registerTask('min', ['uglify', 'cssmin']);
 
 };

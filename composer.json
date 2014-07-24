@@ -4,6 +4,7 @@
     "homepage": "https://github.com/DrMabuse23/yii2-sir-trevor-js",
     "license": "BSD-3-Clause",
     "type": "yii2-extension",
+    "version": "0.0.5",
     "keywords": [
         "yii2",
         "sir trevor js"
