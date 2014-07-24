@@ -1,9 +1,12 @@
 yii2-sir-trevor-js
 ==================
 
-Version 0.0.5
-
+#### Version 0.0.5
 A sir-trevor-js input widget for Yii 2 Framework.
+
+#### Todo
+    1. create output from Input
+    
 
 ## Get Started
 
@@ -45,6 +48,12 @@ Installation using composer:
         ]   
     )
     ?>
+    
+### Output 
+````
+    {"data":[{
+        "type":"columns","data":{"columns":[{"width":6,"blocks":[{"type":"code","data":{"text":".....
+```
 
 ## Advanced Usage
 
