@@ -1,6 +1,6 @@
 {
   "name": "yii2-yii2-sirtrevorjs",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "dependencies": {
     "sir-trevor-js": "https://github.com/schmunk42/sir-trevor-js.git#9c3060d96ae4e9bb30dd3e5ea15766679b5f8f24"
   }

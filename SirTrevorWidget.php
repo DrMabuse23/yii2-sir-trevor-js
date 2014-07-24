@@ -29,18 +29,12 @@
  */
 namespace drmabuse\sirtrevorjs;
 
-use common\helpers\Glyph;
 use drmabuse\sirtrevorjs\assets\SirTrevorAsset;
-use drmabuse\sirtrevorjs\assets\SirTrevorMinAsset;
 use Yii;
-use yii\base\Widget;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\helpers\VarDumper;
-use yii\web\HttpException;
 use yii\web\JsExpression;
-use drmabuse\sirtrevorjs\assets\SirTrevorCompleteAsset;
 use yii\web\View;
 use yii\widgets\InputWidget;
 
@@ -51,7 +45,16 @@ use yii\widgets\InputWidget;
 class SirTrevorWidget extends InputWidget
 {
 
+    /**
+     * @var string
+     */
+    public $version = '0.0.5';
+
+    /**
+     * @var string
+     */
     public $assetMode = 'min';
+
     /**
      * debug mode on off
      * @var bool
@@ -148,13 +151,22 @@ class SirTrevorWidget extends InputWidget
      */
     private function registerAsset()
     {
-        SirTrevorAsset::register($this->view)->assetMode = $this->assetMode;
-        //SirTrevorMinAsset::register($this->view)->language = $this->language;
-        $this->view->registerJs('$(function(){' . $this->getInitJs() . '});', View::POS_END);
+        SirTrevorAsset::register($this->view)->options = [
+            'language'  => $this->language,
+            'assetMode' => $this->assetMode
+        ];
+        $this->view->registerJs(
+'(function($){
+    "use strict";'.PHP_EOL.'
+    $(function(){' . PHP_EOL .
+        $this->getInitJs() . PHP_EOL .
+    '});
+})(jQuery);' . PHP_EOL,
+            View::POS_END
+        );
     }
 
     /**
-     * <div><button id="save" class="btn btn-primary"></button></div>
      * <textarea class='sir-trevor'></textarea>
      * Render the text area input
      */
