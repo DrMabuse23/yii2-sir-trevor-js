@@ -51,6 +51,7 @@ use yii\widgets\InputWidget;
 class SirTrevorWidget extends InputWidget
 {
 
+    public $assetMode = 'min';
     /**
      * debug mode on off
      * @var bool
@@ -147,7 +148,7 @@ class SirTrevorWidget extends InputWidget
      */
     private function registerAsset()
     {
-        SirTrevorAsset::register($this->view)->language = $this->language;
+        SirTrevorAsset::register($this->view)->assetMode = $this->assetMode;
         //SirTrevorMinAsset::register($this->view)->language = $this->language;
         $this->view->registerJs('$(function(){' . $this->getInitJs() . '});', View::POS_END);
     }
