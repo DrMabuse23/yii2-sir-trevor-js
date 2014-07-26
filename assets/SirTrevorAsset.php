@@ -18,7 +18,7 @@ class SirTrevorAsset extends AssetBundle
     /**
      * @var language file
      */
-    public $options    = [
+    public $options = [
         'language'  => 'en',
         'assetMode' => 'min'
     ];
@@ -27,13 +27,17 @@ class SirTrevorAsset extends AssetBundle
     /**
      * @var string
      */
-    public $sourcePath  = '@vendor/drmabuse/yii2-sir-trevor-js/web';
+    public $sourcePath = '@vendor/drmabuse/yii2-sir-trevor-js/web';
 
     /**
      * @var array
      */
     public $css = [
-        "dist/styles/yii2-sirtrevorjs-0.0.5.css",
+        "dist/styles/yii2-sirtrevorjs-0.0.5.min.css",
+    ];
+    public $dev_css = [
+        "web/styles/sir-trevor.css",
+        "web/styles/sir-trevor-icon.css",
     ];
     /**
      * @var array
@@ -71,18 +75,21 @@ class SirTrevorAsset extends AssetBundle
     /**
      *
      */
-    public function registerAssetFiles($view){
+    public function registerAssetFiles($view)
+    {
 
-        $language   = $this->options['language'];
-        $mode       = $this->options['assetMode'];
-        $langFile   = is_file($this->sourcePath."/dist/scripts/locales/{$language}.js")?"dist/scripts/locales/{$language}.js":null;
+        $language = $this->options['language'];
+        $mode     = $this->options['assetMode'];
+        $langFile = is_file($this->sourcePath . "/dist/scripts/locales/{$language}.js") ?
+            "dist/scripts/locales/{$language}.js" : null;
 
-        if($mode === 'min' && $language !== 'en' && $langFile !== null ){
-            $this->js = ArrayHelper::merge($this->js,[$langFile]);
-        }else{
-            $this->js = $this->dev_js;
-            if( $language !== 'en' && $langFile !== null ){
-                $this->js = ArrayHelper::merge($this->js,[$langFile]);
+        if ($mode === 'min' && $language !== 'en' && $langFile !== null) {
+            $this->js = ArrayHelper::merge($this->js, [$langFile]);
+        } else {
+            $this->css = $this->dev_css;
+            $this->js  = $this->dev_js;
+            if ($language !== 'en' && $langFile !== null) {
+                $this->js = ArrayHelper::merge($this->js, [$langFile]);
             }
         }
 
