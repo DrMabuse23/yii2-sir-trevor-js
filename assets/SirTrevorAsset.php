@@ -8,8 +8,9 @@
 
 namespace drmabuse\sirtrevorjs\assets;
 
-//const VERSION = '0.0.2';
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 use yii\web\AssetBundle;
 
 class SirTrevorAsset extends AssetBundle
@@ -17,42 +18,45 @@ class SirTrevorAsset extends AssetBundle
     /**
      * @var language file
      */
-    public $language    = '';
+    public $options = [
+        'language'  => 'en',
+        'assetMode' => 'min'
+    ];
+
 
     /**
      * @var string
      */
-    public $assetMode   = 'min';
-
-    /**
-     * @var string
-     */
-    public $sourcePath  = '@vendor/drmabuse/yii2-sir-trevor-js/web';
+    public $sourcePath = '@vendor/drmabuse/yii2-sir-trevor-js/web';
 
     /**
      * @var array
      */
     public $css = [
-        "grunt/yii2-sirtrevorjs-0.0.3.css",
+        "dist/styles/yii2-sirtrevorjs-0.0.5.min.css",
+    ];
+    public $dev_css = [
+        "web/styles/sir-trevor.css",
+        "web/styles/sir-trevor-icon.css",
     ];
     /**
      * @var array
      */
     public $js = [
-        "dist/scripts/yii2-sirtrevorjs-0.0.3.min.js"
+        "dist/scripts/yii2-sirtrevorjs-0.0.5.min.js"
     ];
 
     /**
      * @var array
      */
     public $dev_js = [
-        'dist/vendor/underscore/underscore.js',
-        'dist/vendor/Eventable/eventable.js',
-        'dist/vendor/sir-trevor-js/sir-trevor.js',
-        "dist/blocks/CodeBlock.js",
-        "dist/blocks/ColumnsBlock.js",
-        "dist/blocks/Gallery.js",
-        "dist/blocks/ImageCaption.js",
+        'scripts/lib/underscore/underscore.js',
+        'scripts/lib/Eventable/eventable.js',
+        'scripts/lib/sir-trevor-js/sir-trevor.js',
+        "scripts/blocks/CodeBlock.js",
+        "scripts/blocks/ColumnsBlock.js",
+        "scripts/blocks/Gallery.js",
+        "scripts/blocks/ImageCaption.js",
 
     ];
     /**
@@ -66,22 +70,46 @@ class SirTrevorAsset extends AssetBundle
     /**
      * @var bool
      */
-    public $forceCopy = true;
+    public $forceCopy = false;
 
     /**
-     * @param $view
-     * @param $language
-     * @param $assetmode
+     *
      */
-    public function init(){
-//        if($this->assetMode === 'min')
-//            return parent::init();
+    public function registerAssetFiles($view)
+    {
 
-        $this->js = $this->dev_js;
-        parent::init();
-        VarDumper::dump([$this->assetMode]);
-        exit;
+        $language = $this->options['language'];
+        $mode     = $this->options['assetMode'];
+        $langFile = is_file($this->sourcePath . "/dist/scripts/locales/{$language}.js") ?
+            "dist/scripts/locales/{$language}.js" : null;
+
+        if ($mode === 'min' && $language !== 'en' && $langFile !== null) {
+            $this->js = ArrayHelper::merge($this->js, [$langFile]);
+        } else {
+            $this->css = $this->dev_css;
+            $this->js  = $this->dev_js;
+            if ($language !== 'en' && $langFile !== null) {
+                $this->js = ArrayHelper::merge($this->js, [$langFile]);
+            }
+        }
+
+        /**
+         * @todo double code
+         */
+
+        foreach ($this->js as $js) {
+            if ($js[0] !== '/' && $js[0] !== '.' && strpos($js, '://') === false) {
+                $view->registerJsFile($this->baseUrl . '/' . $js, [], $this->jsOptions);
+            } else {
+                $view->registerJsFile($js, [], $this->jsOptions);
+            }
+        }
+        foreach ($this->css as $css) {
+            if ($css[0] !== '/' && $css[0] !== '.' && strpos($css, '://') === false) {
+                $view->registerCssFile($this->baseUrl . '/' . $css, [], $this->cssOptions);
+            } else {
+                $view->registerCssFile($css, [], $this->cssOptions);
+            }
+        }
     }
-
-
 }
