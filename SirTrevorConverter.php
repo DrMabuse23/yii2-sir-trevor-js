@@ -108,7 +108,7 @@ class SirTrevorConverter {
         return Markdown::defaultTransform($text);
     }
 
-   
+
     /**
      * Converts headers to html
      *

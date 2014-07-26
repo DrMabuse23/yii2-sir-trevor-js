@@ -18,7 +18,13 @@ Installation using composer:
         ['imageUploadUrl' => \yii\helpers\Url::to(['file/sir-trevor-upload'])]
     )
     ?>
-
+    //Output
+    <?php
+        use drmabuse\sirtrevorjs\SirTrevorConverter;
+        $converter = new SirTrevorConverter();
+    ?>
+    <?= $converter->toHtml($json) ?>
+    
 ## Advanced Usage
 
 ### Image Block - Example File Upload Handler
