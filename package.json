@@ -10,14 +10,14 @@
   "bin": {
     "mcapcli": "node cli.js"
   },
-    
   "author": "mwaylabs",
   "license": "Apache-2.0",
   "dependencies": {
     "promzard": "^0.2.2",
     "commander": "^2.2.0",
     "rc": "^0.4.0",
-    "mcaprc": "0.0.0"
+    "mcaprc": "0.1.0",
+    "mcap-file-upload": "^0.4.1"
   },
   "devDependencies": {
     "tap": "^0.4.11"
