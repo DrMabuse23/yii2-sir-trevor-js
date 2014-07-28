@@ -2,6 +2,8 @@
 'use strict';
 
 var program = require('commander');
+var bar = require('progress-bar');
+var mcapFileExchange = require('./node_modules/mcap-file-upload/lib/mcap-file-upload');
 
 var component = require('./lib/component');
 var notSupported = require('./lib/notSupported');
@@ -38,27 +40,33 @@ function commandDeploy() {
     if (!server) {
         return notSupported();
     }
+
+    var _bar = bar.create(process.stdout);
     var uploadConfig = {
-        proxy: 'http://127.0.0.1:8899',
         progress: function (percent) {
-            console.log('upload:', percent);
+            _bar.update(percent/100);
         },
         "path": "/Users/hano/Desktop/TestApp1",
         "url": server.baseurl,
         "auth": {
-            "user": server.username,
+            "user": server.username + ':mway',
             "pass": server.password
         },
         "deleteMissing": "",
-        "remotePath": "/applications",
+        "remotePath": "/applications/",
         "log": false
     };
 
+    mcapFileExchange.upload(uploadConfig).then(function( data ) {
+        console.log('\nSuccessfully Uploaded');
+    }).catch(function( e ) {
+        console.log('error', e);
+    });
 
 }
 
 program
-    .version('0.0.1')
+    .version('0.0.2')
     .option('info', 'Display the configuration and information')
     .option('new', 'generates a skeletal mCAP Application in the current directory')
     .option('example', 'Creates a mcap example application. Which shows a applications which is using push, security and dataSync')
