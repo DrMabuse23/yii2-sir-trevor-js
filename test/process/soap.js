@@ -3,7 +3,7 @@
 var pz = require('promzard');
 
 var path = require('path');
-var file = path.resolve(__dirname, '../../generate/soap.js');
+var file = path.resolve(__dirname, '../../generate/component/soap.js');
 var ctx = { basename: path.basename(path.dirname(file)) };
 
 pz(file, ctx, function (er, res) {

@@ -5,19 +5,19 @@
   "main": "cli.js",
   "scripts": {
     "start": "cli.js",
-    "test": "tap test/*.js"
+    "test": "tap test/new.js"
   },
   "bin": {
     "mcapcli": "node cli.js"
   },
-    
   "author": "mwaylabs",
   "license": "Apache-2.0",
   "dependencies": {
-    "promzard": "^0.2.2",
     "commander": "^2.2.0",
+    "mcaprc": "0.0.0",
+    "promzard": "^0.2.2",
     "rc": "^0.4.0",
-    "mcaprc": "0.0.0"
+    "winston": "^0.7.3"
   },
   "devDependencies": {
     "tap": "^0.4.11"

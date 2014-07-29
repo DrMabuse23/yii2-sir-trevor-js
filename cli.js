@@ -3,15 +3,12 @@
 
 var program = require('commander');
 
-var component = require('./lib/component');
+var cmdComponent = require('./lib/command/component');
+var cmdNew = require('./lib/command/new');
 var serverconfig = require('mcaprc');
 
 function commandInfo() {
     console.log('Version', program._version);
-}
-
-function commandNew() {
-    console.log('new ...');
 }
 
 function commandExample() {
@@ -37,17 +34,17 @@ program
     .option('server <list>', 'List all server')
     .option('server <default> [alias]', 'List all server')
     .option('log [alias]', 'Live logger of the given server')
-    .option('generate <component>', 'Generate a mCAP Component, components: ' + component.getComponentList().join(', '))
+    .option('generate <component>', 'Generate a mCAP Component, components: ' + cmdComponent.getComponentList().join(', '))
     .parse(process.argv);
 
 if (program.generate) {
-    component.generate(program.generate);
+    cmdComponent.generate(program.generate);
 }
 else if (program.info) {
     commandInfo();
 }
 else if (program.new) {
-    commandNew();
+    cmdNew();
 }
 else if (program.example) {
     commandExample();
