@@ -3,7 +3,7 @@
 var pz = require('promzard');
 
 var path = require('path');
-var file = path.resolve(__dirname, '../../generate/sql.js');
+var file = path.resolve(__dirname, '../../generate/component/sql.js');
 var ctx = { basename: path.basename(path.dirname(file)) };
 
 pz(file, ctx, function (er, res) {

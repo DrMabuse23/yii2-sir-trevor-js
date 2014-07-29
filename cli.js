@@ -1,21 +1,14 @@
 #!/usr/bin/env node
-//'use strict';
+'use strict';
 
 var program = require('commander');
-var bar = require('progress-bar');
-var mcapFileExchange = require('mcap-file-upload');
-
-var component = require('./lib/component');
-var notSupported = require('./lib/notSupported');
+var cmdComponent = require('./lib/command/component');
+var cmdNew = require('./lib/command/new');
+var cmdDeploy = require('./lib/command/deploy');
 var serverconfig = require('mcaprc');
-var mcapApplicationValidation = require('mcap-application-validation');
 
 function commandInfo() {
     console.log('Version', program._version);
-}
-
-function commandNew() {
-    console.log('new ...');
 }
 
 function commandExample() {
@@ -30,61 +23,6 @@ function commandLog() {
     console.log('log ' + program.log);
 }
 
-function commandDeploy() {
-    var server = null;
-    if (program.deploy === true) {
-        server = serverconfig.get('default');
-    }
-    else if (program.deploy) {
-        server = serverconfig.get(program.deploy);
-    }
-    if (!server) {
-        return notSupported();
-    }
-    var dir = process.cwd();
-    if (program.args) {
-        dir = program.args[0];
-    }
-
-    var validation = mcapApplicationValidation.validate(dir);
-    if (validation === true) {
-        var _bar = bar.create(process.stdout);
-        _bar.format = '$bar; $percentage,2:0;% uploaded.';
-        _bar.symbols.loaded	= '#';
-        _bar.symbols.notLoaded	= '-';
-        _bar.width = 50;
-        var uploadConfig = {
-            progress: function (percent) {
-                _bar.update(percent / 100);
-            },
-            "path": dir,
-            "url": server.baseurl,
-            "auth": {
-                "user": server.username,
-                "pass": server.password
-            },
-            "deleteMissing": "",
-            "overwrite": true,
-            "remotePath": "/applications",
-            "log": false
-        };
-
-        mcapFileExchange.upload(uploadConfig).then(function (data) {
-            try {
-                var _data = JSON.parse(data);
-                console.log('\nUploaded state:' + _data.itemStatuses[0].severity)
-            } catch (e) {
-
-            }
-        }).catch(function (e) {
-            console.log('\nerror', e);
-        });
-    }
-    else {
-        console.error(validation);
-    }
-}
-
 program
     .version('0.0.2')
     .option('info', 'Display the configuration and information')
@@ -97,17 +35,17 @@ program
     .option('server <default> [alias]', 'List all server')
     .option('log [alias]', 'Live logger of the given server')
     .option('deploy [alias] [path]', 'Deploy the application to the given server')
-    .option('generate <component>', 'Generate a mCAP Component, components: ' + component.getComponentList().join(', '))
+    .option('generate <component>', 'Generate a mCAP Component, components: ' + cmdComponent.getComponentList().join(', '))
     .parse(process.argv);
 
 if (program.generate) {
-    component.generate(program.generate);
+    cmdComponent.generate(program.generate);
 }
 else if (program.info) {
     commandInfo();
 }
 else if (program.new) {
-    commandNew();
+    cmdNew();
 }
 else if (program.example) {
     commandExample();
@@ -119,7 +57,7 @@ else if (program.log) {
     commandLog();
 }
 else if (program.deploy) {
-    commandDeploy();
+    cmdDeploy.deploy(program);
 }
 
 module.exports = program;
