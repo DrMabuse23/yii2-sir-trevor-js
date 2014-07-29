@@ -58,6 +58,8 @@ else if (program.log) {
 }
 else if (program.deploy) {
     cmdDeploy.deploy(program);
+} else {
+    program.help();
 }
 
 module.exports = program;
