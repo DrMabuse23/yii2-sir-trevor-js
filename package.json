@@ -5,7 +5,7 @@
   "main": "cli.js",
   "scripts": {
     "start": "cli.js",
-    "test": "tap test/new.js"
+    "test": "tap test/*.js"
   },
   "bin": {
     "mcapcli": "node cli.js"
@@ -20,7 +20,8 @@
     "mcap-file-upload": "^0.5.2",
     "progress-bar": "^0.1.1",
     "mcap-application-validation": "0.0.0",
-    "winston": "^0.7.3"
+    "winston": "^0.7.3",
+    "mcap-generator-ionic": "^0.9.4"
   },
   "devDependencies": {
     "tap": "^0.4.11"
