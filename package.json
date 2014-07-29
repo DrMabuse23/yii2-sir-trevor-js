@@ -9,7 +9,7 @@
     },
     "preferGlobal": true,
     "bin": {
-        "mcapcli": "./cli.js"
+        "mcap": "./cli.js"
     },
     "author": "mwaylabs",
     "license": "Apache-2.0",
