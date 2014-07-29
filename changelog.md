@@ -1,3 +1,6 @@
+## 0.0.5 - 2014-07-29
+- rename command to mcap
+
 ## 0.0.4 - 2014-07-29
 - add prefer global
 - cli support
