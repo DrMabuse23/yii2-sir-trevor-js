@@ -3,7 +3,7 @@
 
 var program = require('commander');
 var bar = require('progress-bar');
-var mcapFileExchange = require('./node_modules/mcap-file-upload/lib/mcap-file-upload');
+var mcapFileExchange = require('mcap-file-upload');
 
 var component = require('./lib/component');
 var notSupported = require('./lib/notSupported');

@@ -17,7 +17,7 @@
     "commander": "^2.2.0",
     "rc": "^0.4.0",
     "mcaprc": "0.1.0",
-    "mcap-file-upload": "^0.4.1",
+    "mcap-file-upload": "^0.5.1",
     "progress-bar": "^0.1.1"
   },
   "devDependencies": {
