@@ -6,6 +6,7 @@ var cmdComponent = require('./lib/command/component');
 var cmdNew = require('./lib/command/new');
 var cmdDeploy = require('./lib/command/deploy');
 var serverconfig = require('mcaprc');
+var checkProject = require('./lib/check_project');
 
 function commandInfo() {
     console.log('Version', program._version);
@@ -39,7 +40,9 @@ program
     .parse(process.argv);
 
 if (program.generate) {
-    cmdComponent.generate(program.generate);
+    if (checkProject.isInsideProject(true)) {
+        cmdComponent.generate(program.generate);
+    }
 }
 else if (program.info) {
     commandInfo();
@@ -54,11 +57,16 @@ else if (program.server) {
     commandServerConfig();
 }
 else if (program.log) {
-    commandLog();
+    if (checkProject.isInsideProject(true)) {
+        commandLog();
+    }
 }
 else if (program.deploy) {
-    cmdDeploy.deploy(program);
-} else {
+    if (checkProject.isInsideProject(true)) {
+        cmdDeploy.deploy(program);
+    }
+}
+else {
     program.help();
 }
 
