@@ -18,6 +18,9 @@ function commandExample() {
 
 function commandServerConfig() {
     serverconfig.parse(program.server, program.args);
+    if (program.server !== 'list') {
+        console.log('Done without errors');
+    }
 }
 
 function commandLog() {
@@ -29,7 +32,6 @@ program
     .option('info', 'Display the configuration and information')
     .option('new', 'generates a skeletal mCAP Application in the current directory')
     .option('example', 'Creates a mcap example application. Which shows a applications which is using push, security and dataSync')
-    .option('server', 'List all server')
     .option('server <list>', 'List all server')
     .option('server <add> [alias] [URI] [user] [pass]', 'Add a server configuration')
     .option('server <remove> [alias]', 'Remove a server configuration')
