@@ -4,8 +4,8 @@
 var program = require('commander');
 var cmdComponent = require('./lib/command/component');
 var cmdNew = require('./lib/command/new');
+var cmdServer = require('./lib/command/server');
 var cmdDeploy = require('./lib/command/deploy');
-var serverconfig = require('mcaprc');
 var checkProject = require('./lib/check_project');
 
 function commandInfo() {
@@ -14,13 +14,6 @@ function commandInfo() {
 
 function commandExample() {
     console.log('example ...');
-}
-
-function commandServerConfig() {
-    serverconfig.parse(program.server, program.args);
-    if (program.server !== 'list') {
-        console.log('Done without errors');
-    }
 }
 
 function commandLog() {
@@ -57,7 +50,7 @@ else if (program.example) {
     commandExample();
 }
 else if (program.server) {
-    commandServerConfig();
+    cmdServer(program);
 }
 else if (program.log) {
     if (checkProject.isInsideProject(true)) {
