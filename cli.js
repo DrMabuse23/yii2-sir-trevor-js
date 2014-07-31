@@ -35,7 +35,7 @@ program
     .option('server <list>', 'List all server')
     .option('server <default> [alias]', 'List all server')
     .option('log [alias]', 'Live logger of the given server')
-    .option('deploy [alias] [path]', 'Deploy the application to the given server')
+    .option('deploy [alias] <path>', 'Deploy the application to the given server')
     .option('generate <component>', 'Generate a mCAP Component, components: ' + cmdComponent.getComponentList().join(', '))
     .parse(process.argv);
 
@@ -62,7 +62,7 @@ else if (program.log) {
     }
 }
 else if (program.deploy) {
-    if (checkProject.isInsideProject(true)) {
+    if (program.args[0] || checkProject.isInsideProject(true)) {
         cmdDeploy.deploy(program);
     }
 }
