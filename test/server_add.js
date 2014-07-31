@@ -11,7 +11,6 @@ function respond(c, lastOutput, custom) {
         c.stdin.write('\n');
     };
     var regex = new RegExp(lastOutput + ' $');
-    console.error(output);
     if (output.match(regex)) {
         c.stdin.write('\n');
         c.stdin.end();

@@ -35,8 +35,8 @@ function spawnProcess(t, process, expect, lastAttributeOutput, custom) {
     });
 
     c.on('close', function () {
-        console.error('actual', actual);
-        console.error('expect', expect);
+//        console.error('actual', actual);
+//        console.error('expect', expect);
         actual = JSON.parse(actual);
         t.deepEqual(actual, expect);
         t.end();
