@@ -1,6 +1,6 @@
 {
     "name": "mcap-cli",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Commandline Interface to generate mCAP Applications",
     "main": "cli.js",
     "scripts": {
@@ -22,7 +22,7 @@
         "progress-bar": "^0.1.1",
         "mcap-application-validation": "0.0.0",
         "winston": "^0.7.3",
-        "mcap-generator-ionic": "^0.9.4"
+        "mcap-generator-ionic": "^0.10.0"
     },
     "devDependencies": {
         "tap": "^0.4.11"
