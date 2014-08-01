@@ -11,6 +11,10 @@
     "bin": {
         "mcap": "./cli.js"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mwaylabs/mcap-cli.git"
+    },
     "author": "mwaylabs",
     "license": "Apache-2.0",
     "dependencies": {
