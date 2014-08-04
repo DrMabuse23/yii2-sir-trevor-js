@@ -80,9 +80,8 @@ var spawnProcess = function(script, args, timestmp, oldDir, cb) {
         process.stdout.on('data', function(data) {
             cb(data, tmpDir);
         });
-        process.stderr.on('data', function (d) {
-            console.error(d);
-            removeTmpDir();
+        process.stderr.on('data', function (data) {
+            cb(data, tmpDir);
         });
     });
 };
