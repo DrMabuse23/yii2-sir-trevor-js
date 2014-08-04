@@ -51,8 +51,8 @@ var set = function(key, value, cb) {
     }
 };
 
-var spawnProcess = function(script, args, cb) {
-    var timestmp = Date.now();
+var spawnProcess = function(script, args, timestmp, cb) {
+
     var tmpDir = 'tmp_test' + timestmp;
     set('chdir', tmpDir, function() {
         var _args = [];
@@ -87,11 +87,14 @@ var spawnProcess = function(script, args, cb) {
 };
 
 var executeCommand = function(script, args, cb) {
+    var timestmp = Date.now();
     if(typeof args === 'function') {
         cb = args;
         args = '';
     }
-   spawnProcess(script, args, cb);
+   spawnProcess(script, args, timestmp, function(output) {
+        cb(output);
+   });
 };
 
 var fileExists = function(filePath, cb) {
