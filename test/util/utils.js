@@ -7,6 +7,7 @@ var toString = Object.prototype.toString;
 var _cwd = process.cwd();
 var fs = require('fs');
 var rimraf = require('rimraf');
+var mkdirp = require('mkdirp');
 
 var _getTestPath = function(sub) {
     var _path = path.resolve(process.cwd(), 'test_tmp');
@@ -16,13 +17,10 @@ var _getTestPath = function(sub) {
     return _path;
 };
 
-var removeTmpDir = function(dir) {
-    if(!dir) {
-        return;
-    }
-    var _path = path.normalize(dir);
-    console.error(process.cwd());
-    rimraf(process.cwd(), function(err) {
+var removeTmpDir = function() {
+    var _path = path.resolve(process.cwd(), '..');
+    // asnyc doesn't work?
+    rimraf.sync(_path, function(err) {
         if(err) {
             throw new Error();
         }
@@ -33,17 +31,16 @@ var set = function(key, value, cb) {
     switch (key) {
         case 'chdir':
             _cwd = path.resolve(__dirname, '..', value);
-            fs.mkdir(_cwd, function(err) {
+            mkdirp(_cwd, function(err) {
                 if(err) {
                     throw new Error();
                 }
                 try {
                   process.chdir(_cwd);
-                  console.error('New directory: ' + process.cwd());
                   cb();
                 }
                 catch (err) {
-                  console.error('chdir: ' + err);
+                  throw new Error('unable to create new test directory');
                 }
                 console.error(_cwd);
             });
@@ -53,7 +50,7 @@ var set = function(key, value, cb) {
 
 var spawnProcess = function(script, args, timestmp, cb) {
 
-    var tmpDir = 'tmp_test' + timestmp;
+    var tmpDir = 'tmp/tmp_test' + timestmp;
     set('chdir', tmpDir, function() {
         var _args = [];
         if(Array.isArray(args)) {
@@ -77,28 +74,29 @@ var spawnProcess = function(script, args, timestmp, cb) {
         });
 
         process.stdout.on('data', function(data) {
-            cb(data);
-            removeTmpDir(tmpDir);
+            cb(data, tmpDir);
         });
         process.stderr.on('data', function (d) {
             console.error(d);
+            removeTmpDir();
         });
     });
 };
 
-var executeCommand = function(script, args, cb) {
+var executeCommand = function(script, args, cleanup, cb) {
     var timestmp = Date.now();
     if(typeof args === 'function') {
         cb = args;
         args = '';
     }
-   spawnProcess(script, args, timestmp, function(output) {
-        cb(output);
+   spawnProcess(script, args, timestmp, function(output, tmpDir) {
+        cb(output, tmpDir);
    });
 };
 
 var fileExists = function(filePath, cb) {
-    fs.exists(path, cb);
+    var _filePath = path.resolve(filePath);
+    fs.exists(_filePath, cb);
 };
 
 var createTmpTestDir = function(directory) {
@@ -109,3 +107,5 @@ var createTmpTestDir = function(directory) {
 module.exports.set = set;
 module.exports.spawnProcess = spawnProcess;
 module.exports.executeCommand = executeCommand;
+module.exports.removeTmpDir = removeTmpDir;
+module.exports.fileExists = fileExists;
