@@ -3,6 +3,9 @@
 var tap = require('tap');
 var pz = require('promzard');
 var spawn = require('child_process').spawn;
+var utils = require('./util/utils');
+var path = require('path');
+var helpers = require('./util/helpers');
 
 var node = process.execPath;
 var output = '';
