@@ -36,22 +36,24 @@ var set = function(key, value, cb) {
                     throw new Error();
                 }
                 try {
-                  process.chdir(_cwd);
-                  cb();
+                    process.chdir(_cwd);
+                    cb();
                 }
                 catch (err) {
-                  throw new Error('unable to create new test directory');
+                    throw new Error('unable to change dir', err);
                 }
             });
             break;
     }
 };
 
-var spawnProcess = function(script, args, timestmp, oldDir, cb) {
+var spawnProcess = function(script, args, timestmp, oldDir, cb, chdirTo) {
     var tmpDir = null;
     var returnData = '';
-    if(!oldDir) {
+    if(!oldDir && !chdirTo) {
         tmpDir = 'tmp/tmp_test' + timestmp;
+    } else if(chdirTo) {
+        tmpDir = chdirTo;
     } else {
         tmpDir = oldDir;
     }
@@ -68,6 +70,7 @@ var spawnProcess = function(script, args, timestmp, oldDir, cb) {
         _args.unshift(_path);
         // execute command
         var process = spawn('node', _args, function(error, stdout, stderr) {
+
             if(error) {
                 console.error(error.stack);
                 console.error('Error code: '+error.code);
@@ -90,7 +93,7 @@ var spawnProcess = function(script, args, timestmp, oldDir, cb) {
     });
 };
 
-var executeCommand = function(script, args, oldDir, cb) {
+var executeCommand = function(script, args, oldDir, cb, chdirTo) {
     var timestmp = Date.now();
     if(typeof args === 'function') {
         cb = args;
@@ -98,7 +101,7 @@ var executeCommand = function(script, args, oldDir, cb) {
     }
     spawnProcess(script, args, timestmp, oldDir, function(output, tmpDir) {
         cb(output, tmpDir);
-    });
+    }, chdirTo);
 };
 
 var fileExists = function(filePath, cb) {
