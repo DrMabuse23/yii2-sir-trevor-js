@@ -5,6 +5,7 @@ var pz = require('promzard');
 var spawn = require('child_process').spawn;
 var utils = require('./util/utils');
 var path = require('path');
+var helper = require('./util/helpers');
 
 var node = process.execPath;
 var output = '';
@@ -73,15 +74,23 @@ tap.test('new app', function (t) {
     spawnProcess(t, process, expect, lastAttributeOutput);
 });
 
-tap.test('tester', function(t) {
-    // Not implemented yet
-    // utils.set('cwd');
-    utils.executeCommand('./../process/new.js', 'new', function(output) {
+tap.test('run mcap new without any arguments', function(t) {
 
+    utils.executeCommand('../../cli.js', ['new'], function(output) {
         //console.error(t.deepEqual);
         t.equal(output.toString(), 'Name: ', 'first output should be Name:');
         t.end();
     });
+
+});
+
+tap.test('Create new app named testName', function(t) {
+
+    utils.executeCommand('../../cli.js', ['new', 'testName'], function(output) {
+        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'first output should be Name:');
+        t.end();
+    });
+
 });
 
 tap.test('WTF', function(t) {
