@@ -287,3 +287,10 @@ tap.test('sql', function (t) {
     //console.error('%s %s', node, process);
     spawnProcess(t, process, expect, lastAttributeOutput);
 });
+
+tap.test('calling mcap generate model should throw an error if you\'re not in a mcap-project',function(t) {
+    utils.executeCommand('../../cli.js', ['generate', 'model'], false, function(output, tmpPath) {
+        t.equal(output.toString(), 'Not inside a mCAP Project\n');
+        t.end();
+    });
+});
