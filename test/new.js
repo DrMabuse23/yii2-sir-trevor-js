@@ -86,33 +86,64 @@ tap.test('run mcap new without any arguments', function(t) {
 
 tap.test('Create new app named testName', function(t) {
 
-    utils.executeCommand('../../cli.js', ['new', 'testName'], true, function(output) {
-        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'first output should be Name:');
+    utils.executeCommand('../../cli.js', ['new', 'testName'], false, function(output) {
+        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'mcap new testName, wizard should open');
         t.end();
     });
 
 });
 
-tap.test('Create new app named testName2', function(t) {
+tap.test('Create new app named testName2 and check for files and fileContent', function(t) {
 
     var expectedFiles = [
         'testName2/mcap.json',
         'testName2/server'
     ];
 
+    var reg =  /(\"name\"\: \"testName2\")/;
+
     var expectedContent = [
-        ['testName2/mcap.json', /(\"name\"\: \"testName2\")/]
+        ['testName2/mcap.json', reg]
     ];
 
+    utils.executeCommand('../../cli.js', ['new', 'testName2'], false, function(output, tmpPath) {
+        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'mcap new testName2, files should have been created');
+        helpers.assertFile(expectedFiles);
+        helpers.assertFileContent(expectedContent);
 
+        t.end();
+    });
 
-    utils.executeCommand('../../cli.js', ['new', 'testName2'], true, function(output, tmpPath) {
-        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'first output should be Name:');
+});
+
+tap.test('try to create an already existing app with the same name', function(t) {
+
+    var absTestPath = null;
+
+    var expectedFiles = [
+        'testName/mcap.json',
+        'testName/server'
+    ];
+
+    var reg = /(\"name\"\: \"testName\")/;
+
+    var expectedContent = [
+        ['testName/mcap.json', reg]
+    ];
+
+    utils.executeCommand('../../cli.js', ['new', 'testName'], false, function(output, tmpPath) {
+        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'mcap new testName, files should have been created');
 
         helpers.assertFile(expectedFiles);
         helpers.assertFileContent(expectedContent);
-        utils.removeTmpDir();
-        t.end();
+
+        utils.executeCommand('../../cli.js', ['new', 'testName'], tmpPath, function(output, tmpPath) {
+            absTestPath = path.resolve(process.cwd(), 'testName');
+            t.equal(output.toString(), 'File ' + absTestPath + ' already exists\n');
+            t.end();
+            utils.removeTmpDir();
+        });
+
     });
 
 });
@@ -121,6 +152,6 @@ tap.test('WTF', function(t) {
     // Not sure why i need to do this?!
     // Without exiting manually, the previous test would never fail
     // no matter what i check
+    //utils.removeTmpDir();
     process.exit(0);
-
 });
