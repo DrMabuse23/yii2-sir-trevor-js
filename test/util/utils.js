@@ -42,7 +42,6 @@ var set = function(key, value, cb) {
                 catch (err) {
                   throw new Error('unable to create new test directory');
                 }
-                console.error(_cwd);
             });
             break;
     }
@@ -63,7 +62,6 @@ var spawnProcess = function(script, args, timestmp, oldDir, cb) {
             _args.push(args);
         }
         var scriptPath = path.resolve(__dirname, script);
-        console.error(scriptPath);
 
         var _path = require.resolve(script);
         _args.unshift(_path);
