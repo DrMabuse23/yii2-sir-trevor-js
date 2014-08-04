@@ -325,3 +325,25 @@ tap.test('calling mcap generate without any argument',function(t) {
         t.end();
     });
 });
+
+tap.test('calling mcap generate without any argument',function(t) {
+    utils.executeCommand('../../cli.js', ['new', 'test'], false, function(output, tmpPath) {
+        // get the absolute path to the mcap project
+        var mcapProjectPath = path.resolve('test');
+
+        utils.executeCommand('../../cli.js', ['generate', 'bikini'], false, function(output, tmpPath) {
+            t.equal(output.toString(), 'Name: ');
+            t.end();
+            process.chdir('..');
+            utils.removeTmpDir();
+        }, mcapProjectPath);
+    });
+});
+
+tap.test('WTF', function(t) {
+    // Not sure why i need to do this?!
+    // Without exiting manually, the previous test would never fail
+    // no matter what i check
+
+    process.exit(0);
+});
