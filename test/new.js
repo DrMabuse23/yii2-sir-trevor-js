@@ -3,6 +3,8 @@
 var tap = require('tap');
 var pz = require('promzard');
 var spawn = require('child_process').spawn;
+var utils = require('./util/utils');
+var path = require('path');
 
 var node = process.execPath;
 var output = '';
@@ -11,9 +13,19 @@ function respond(c, lastOutput, custom) {
         c.stdin.write('\n');
     };
     var regex = new RegExp(lastOutput + ' $');
+    var testOut = [
+        'Name: ',
+        'Package: (com.company.app) '
+    ];
     if (output.match(regex)) {
-        c.stdin.write('\n');
+        c.stdin.write('myIndiTemplate\n');
         c.stdin.end();
+        return;
+    } else if (output === testOut[0]) {
+        c.stdin.write('name\n');
+        return;
+    } else if (output === testOut[0] + testOut[1]) {
+        c.stdin.write('de.mway.test\n');
         return;
     }
 
@@ -49,14 +61,33 @@ tap.test('new app', function (t) {
 
     var expect = {
         'templateValues': {
-            'name': '',
-            'package': 'com.company.app'
+            'name': 'name',
+            'package': 'de.mway.test'
         },
-        'template': 'helloworld'
+        'template': 'myIndiTemplate'
     };
 
     var lastAttributeOutput = 'Template: \\(helloworld\\)';
 
     //console.error('%s %s', node, process);
     spawnProcess(t, process, expect, lastAttributeOutput);
+});
+
+tap.test('tester', function(t) {
+    // Not implemented yet
+    // utils.set('cwd');
+    utils.executeCommand('./../process/new.js', 'new', function(output) {
+
+        //console.error(t.deepEqual);
+        t.equal(output.toString(), 'Name: ', 'first output should be Name:');
+        t.end();
+    });
+});
+
+tap.test('WTF', function(t) {
+    // Not sure why i need to do this?!
+    // Without exiting manually, the previous test would never fail
+    // no matter what i check
+    process.exit(0);
+
 });
