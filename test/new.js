@@ -5,7 +5,7 @@ var pz = require('promzard');
 var spawn = require('child_process').spawn;
 var utils = require('./util/utils');
 var path = require('path');
-var helper = require('./util/helpers');
+var helpers = require('./util/helpers');
 
 var node = process.execPath;
 var output = '';
@@ -26,7 +26,7 @@ function respond(c, lastOutput, custom) {
         c.stdin.write('name\n');
         return;
     } else if (output === testOut[0] + testOut[1]) {
-        c.stdin.write('de.mway.test\n');
+        c.stdin.write('io.mway.test\n');
         return;
     }
 
@@ -63,7 +63,7 @@ tap.test('new app', function (t) {
     var expect = {
         'templateValues': {
             'name': 'name',
-            'package': 'de.mway.test'
+            'package': 'io.mway.test'
         },
         'template': 'myIndiTemplate'
     };
@@ -76,7 +76,7 @@ tap.test('new app', function (t) {
 
 tap.test('run mcap new without any arguments', function(t) {
 
-    utils.executeCommand('../../cli.js', ['new'], function(output) {
+    utils.executeCommand('../../cli.js', ['new'], false, function(output) {
         //console.error(t.deepEqual);
         t.equal(output.toString(), 'Name: ', 'first output should be Name:');
         t.end();
@@ -86,8 +86,32 @@ tap.test('run mcap new without any arguments', function(t) {
 
 tap.test('Create new app named testName', function(t) {
 
-    utils.executeCommand('../../cli.js', ['new', 'testName'], function(output) {
+    utils.executeCommand('../../cli.js', ['new', 'testName'], true, function(output) {
         t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'first output should be Name:');
+        t.end();
+    });
+
+});
+
+tap.test('Create new app named testName2', function(t) {
+
+    var expectedFiles = [
+        'testName2/mcap.json',
+        'testName2/server'
+    ];
+
+    var expectedContent = [
+        ['testName2/mcap.json', /(\"name\"\: \"testName2\")/]
+    ];
+
+
+
+    utils.executeCommand('../../cli.js', ['new', 'testName2'], true, function(output, tmpPath) {
+        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'first output should be Name:');
+
+        helpers.assertFile(expectedFiles);
+        helpers.assertFileContent(expectedContent);
+        utils.removeTmpDir();
         t.end();
     });
 
