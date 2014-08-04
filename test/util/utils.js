@@ -48,9 +48,13 @@ var set = function(key, value, cb) {
     }
 };
 
-var spawnProcess = function(script, args, timestmp, cb) {
-
-    var tmpDir = 'tmp/tmp_test' + timestmp;
+var spawnProcess = function(script, args, timestmp, oldDir, cb) {
+    var tmpDir = null;
+    if(!oldDir) {
+        tmpDir = 'tmp/tmp_test' + timestmp;
+    } else {
+        tmpDir = oldDir;
+    }
     set('chdir', tmpDir, function() {
         var _args = [];
         if(Array.isArray(args)) {
@@ -83,15 +87,15 @@ var spawnProcess = function(script, args, timestmp, cb) {
     });
 };
 
-var executeCommand = function(script, args, cleanup, cb) {
+var executeCommand = function(script, args, oldDir, cb) {
     var timestmp = Date.now();
     if(typeof args === 'function') {
         cb = args;
         args = '';
     }
-   spawnProcess(script, args, timestmp, function(output, tmpDir) {
+    spawnProcess(script, args, timestmp, oldDir, function(output, tmpDir) {
         cb(output, tmpDir);
-   });
+    });
 };
 
 var fileExists = function(filePath, cb) {
