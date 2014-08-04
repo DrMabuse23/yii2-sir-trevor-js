@@ -318,3 +318,10 @@ tap.test('calling mcap generate should throw an error if you\'re not in a mcap-p
         t.end();
     });
 });
+
+tap.test('calling mcap generate without any argument',function(t) {
+    utils.executeCommand('../../cli.js', ['generate'], false, function(output, tmpPath) {
+        t.equal(output.toString(), '\n');
+        t.end();
+    });
+});
