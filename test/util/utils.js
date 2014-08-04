@@ -49,6 +49,7 @@ var set = function(key, value, cb) {
 
 var spawnProcess = function(script, args, timestmp, oldDir, cb) {
     var tmpDir = null;
+    var returnData = '';
     if(!oldDir) {
         tmpDir = 'tmp/tmp_test' + timestmp;
     } else {
@@ -76,11 +77,16 @@ var spawnProcess = function(script, args, timestmp, oldDir, cb) {
         });
 
         process.stdout.on('data', function(data) {
+            returnData += data;
             cb(data, tmpDir);
         });
         process.stderr.on('data', function (data) {
+            returnData += data;
             cb(data, tmpDir);
         });
+        // process.stdout.on('end', function() {
+        //     cb(returnData, tmpDir);
+        // });
     });
 };
 
