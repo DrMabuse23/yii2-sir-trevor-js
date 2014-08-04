@@ -23,7 +23,9 @@ var removeTmpDir = function(dir) {
     var _path = path.normalize(dir);
     console.error(process.cwd());
     rimraf(process.cwd(), function(err) {
-        if(err) throw new Error();
+        if(err) {
+            throw new Error();
+        }
     });
 };
 
@@ -32,7 +34,9 @@ var set = function(key, value, cb) {
         case 'chdir':
             _cwd = path.resolve(__dirname, '..', value);
             fs.mkdir(_cwd, function(err) {
-                if(err) throw new Error();
+                if(err) {
+                    throw new Error();
+                }
                 try {
                   process.chdir(_cwd);
                   console.error('New directory: ' + process.cwd());
