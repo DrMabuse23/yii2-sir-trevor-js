@@ -326,7 +326,7 @@ tap.test('calling mcap generate without any argument',function(t) {
     });
 });
 
-tap.test('calling mcap generate without any argument',function(t) {
+tap.test('calling mcap generate bikini',function(t) {
     utils.executeCommand('../../cli.js', ['new', 'test'], false, function(output, tmpPath) {
         // get the absolute path to the mcap project
         var mcapProjectPath = path.resolve('test');
@@ -335,7 +335,7 @@ tap.test('calling mcap generate without any argument',function(t) {
             t.equal(output.toString(), 'Name: ');
             t.end();
             process.chdir('..');
-            utils.removeTmpDir();
+            //utils.removeTmpDir();
         }, mcapProjectPath);
     });
 });
