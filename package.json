@@ -5,7 +5,7 @@
     "main": "cli.js",
     "scripts": {
         "start": "cli.js",
-        "test": "tap test/*.js"
+        "test": "tap test/tests/*.js"
     },
     "preferGlobal": true,
     "bin": {
