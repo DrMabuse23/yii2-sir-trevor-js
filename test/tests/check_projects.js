@@ -4,7 +4,7 @@ var tap = require('tap');
 tap.test('check project: isInsideProject', function (t) {
     var fs = require('fs');
     // there is no mcap.json
-    var checkProject = require('../lib/check_project');
+    var checkProject = require('../../lib/check_project');
     // there is no mcap.json
     t.deepEqual(checkProject.isInsideProject(), false);
     // still not there

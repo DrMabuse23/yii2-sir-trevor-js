@@ -3,9 +3,9 @@
 var tap = require('tap');
 var pz = require('promzard');
 var spawn = require('child_process').spawn;
-var utils = require('./util/utils');
+var utils = require('./../util/utils');
 var path = require('path');
-var helpers = require('./util/helpers');
+var helpers = require('./../util/helpers');
 
 var node = process.execPath;
 var output = '';
@@ -48,7 +48,7 @@ function spawnProcess(t, process, expect, lastAttributeOutput, custom) {
 
 tap.test('bikini', function (t) {
 
-    var process = require.resolve('./process/bikini.js');
+    var process = require.resolve('./../process/bikini.js');
 
     var expect = {
         'name': '',
@@ -66,7 +66,7 @@ tap.test('bikini', function (t) {
 
 tap.test('connectionconfiguration', function (t) {
 
-    var process = require.resolve('./process/connectionconfiguration.js');
+    var process = require.resolve('./../process/connectionconfiguration.js');
 
     var expect = {
         'name': '',
@@ -142,7 +142,7 @@ tap.test('connectionconfiguration', function (t) {
 
 tap.test('model', function (t) {
 
-    var process = require.resolve('./process/model.js');
+    var process = require.resolve('./../process/model.js');
 
     var expect = {
         'name': 'book',
@@ -180,7 +180,7 @@ tap.test('model', function (t) {
 
 tap.test('rest', function (t) {
 
-    var process = require.resolve('./process/rest.js');
+    var process = require.resolve('./../process/rest.js');
 
     var expect = {
         'name': '',
@@ -205,7 +205,7 @@ tap.test('rest', function (t) {
 
 tap.test('saprfc', function (t) {
 
-    var process = require.resolve('./process/saprfc.js');
+    var process = require.resolve('./../process/saprfc.js');
 
     var expect = {
         'name': '',
@@ -243,7 +243,7 @@ tap.test('saprfc', function (t) {
 
 tap.test('soap', function (t) {
 
-    var process = require.resolve('./process/soap.js');
+    var process = require.resolve('./../process/soap.js');
 
     var expect = {
         'name': '',
@@ -270,7 +270,7 @@ tap.test('soap', function (t) {
 
 tap.test('sql', function (t) {
 
-    var process = require.resolve('./process/sql.js');
+    var process = require.resolve('./../process/sql.js');
 
     var expect = {
         'name': '',

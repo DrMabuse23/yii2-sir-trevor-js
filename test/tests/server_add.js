@@ -43,7 +43,7 @@ function spawnProcess(t, process, expect, lastAttributeOutput, custom) {
 
 tap.test('server add wizard', function (t) {
 
-    var process = require.resolve('./process/server_add.js');
+    var process = require.resolve('./../process/server_add.js');
 
     var expect = {
         'name': '',

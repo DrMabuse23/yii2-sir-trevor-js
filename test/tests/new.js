@@ -3,9 +3,9 @@
 var tap = require('tap');
 var pz = require('promzard');
 var spawn = require('child_process').spawn;
-var utils = require('./util/utils');
+var utils = require('./../util/utils');
 var path = require('path');
-var helpers = require('./util/helpers');
+var helpers = require('./../util/helpers');
 
 var node = process.execPath;
 var output = '';
@@ -58,7 +58,7 @@ function spawnProcess(t, process, expect, lastAttributeOutput, custom) {
 
 tap.test('new app', function (t) {
 
-    var process = require.resolve('./process/new.js');
+    var process = require.resolve('./../process/new.js');
 
     var expect = {
         'templateValues': {

@@ -1,7 +1,7 @@
 'use strict';
 
 var tap = require('tap');
-var component = require('../lib/command/component');
+var component = require('../../lib/command/component');
 
 tap.test('getComponentList', function (t) {
 
