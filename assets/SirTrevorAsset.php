@@ -36,8 +36,8 @@ class SirTrevorAsset extends AssetBundle
         "dist/styles/yii2-sirtrevorjs-0.0.5.min.css",
     ];
     public $dev_css = [
-        "web/styles/sir-trevor.css",
-        "web/styles/sir-trevor-icon.css",
+        "styles/sir-trevor.css",
+        "styles/sir-trevor-icons.css",
     ];
     /**
      * @var array
