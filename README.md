@@ -1,5 +1,6 @@
 yii2-sir-trevor-js
 ==================
+[![Latest Stable Version](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/v/stable.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![Total Downloads](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/downloads.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![Latest Unstable Version](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/v/unstable.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![License](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/license.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js)
 
 #### Version 0.0.5
 A sir-trevor-js input widget for Yii 2 Framework.
