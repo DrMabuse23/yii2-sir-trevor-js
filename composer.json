@@ -25,6 +25,7 @@
         }
     },
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*",
+        "michelf/php-markdown": "1.*"
     }
 }
