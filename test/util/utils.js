@@ -40,7 +40,7 @@ var set = function(key, value, cb) {
                     cb();
                 }
                 catch (err) {
-                    throw new Error('unable to change dir', err);
+                    throw new Error('unable to change dir [probably due to race-conditions]', err);
                 }
             });
             break;
