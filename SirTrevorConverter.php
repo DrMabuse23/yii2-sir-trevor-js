@@ -166,7 +166,9 @@ class SirTrevorConverter {
      */
     public function imageToHtml($file, $caption = '')
     {
-        $_return = '<figure class="st-image"><img src="' . $file['url'] . '" alt="" />';
+        $url = (isset($file['url']))?$file['url']:'';
+
+        $_return = '<figure class="st-image"><img src="' . $url . '" alt="" />';
 
         if ($caption != null) {
             $_return .= '<figcaption>'.$caption.'</figcaption>';
