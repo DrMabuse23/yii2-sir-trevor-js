@@ -49,6 +49,15 @@ Installation using composer:
         ]   
     )
     ?>
+<<<<<<< HEAD
+    //Output
+    <?php
+        use drmabuse\sirtrevorjs\SirTrevorConverter;
+        $converter = new SirTrevorConverter();
+    ?>
+    <?= $converter->toHtml($json) ?>
+    
+=======
     
 ### Output 
 ````
@@ -56,6 +65,7 @@ Installation using composer:
         "type":"columns","data":{"columns":[{"width":6,"blocks":[{"type":"code","data":{"text":".....
 ```
 
+>>>>>>> refs/heads/master
 ## Advanced Usage
 
 ### Image Block - Example File Upload Handler
