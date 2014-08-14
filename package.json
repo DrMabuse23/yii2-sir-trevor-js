@@ -22,11 +22,11 @@
         "promzard": "^0.2.2",
         "rc": "^0.4.0",
         "mcaprc": "0.1.0",
-        "mcap-file-upload": "^0.5.2",
         "progress-bar": "^0.1.1",
         "mcap-application-validation": "0.0.0",
         "winston": "^0.7.3",
-        "mcap-generator-ionic": "~0.10.0"
+        "mcap-generator-ionic": "~0.10.0",
+        "mcap-deploy": "0.0.0"
     },
     "devDependencies": {
         "lodash": "^2.4.1",
