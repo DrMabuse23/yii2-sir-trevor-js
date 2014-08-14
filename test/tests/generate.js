@@ -288,50 +288,51 @@ tap.test('sql', function (t) {
     spawnProcess(t, process, expect, lastAttributeOutput);
 });
 
-tap.test('calling mcap generate should throw an error if you\'re not in a mcap-project',function(t) {
-    utils.executeCommand('../../cli.js', ['generate', 'model'], false, function(output, tmpPath) {
+tap.test('calling mcap generate should throw an error if you\'re not in a mcap-project', function (t) {
+    utils.executeCommand('../../cli.js', ['generate', 'model'], false, function (output, tmpPath) {
         t.equal(output.toString(), 'Not inside a mCAP Project\n');
+
+        utils.executeCommand('../../cli.js', ['generate', 'bikini'], false, function (output, tmpPath) {
+            t.equal(output.toString(), 'Not inside a mCAP Project\n');
+
+            utils.executeCommand('../../cli.js', ['generate', 'connectionconfiguration'], false, function (output, tmpPath) {
+                t.equal(output.toString(), 'Not inside a mCAP Project\n');
+
+                utils.executeCommand('../../cli.js', ['generate', 'rest'], false, function (output, tmpPath) {
+                    t.equal(output.toString(), 'Not inside a mCAP Project\n');
+
+                    utils.executeCommand('../../cli.js', ['generate', 'saprfc'], false, function (output, tmpPath) {
+                        t.equal(output.toString(), 'Not inside a mCAP Project\n');
+
+                        utils.executeCommand('../../cli.js', ['generate', 'soap'], false, function (output, tmpPath) {
+                            t.equal(output.toString(), 'Not inside a mCAP Project\n');
+
+                            utils.executeCommand('../../cli.js', ['generate', 'sql'], false, function (output, tmpPath) {
+                                t.equal(output.toString(), 'Not inside a mCAP Project\n');
+                                t.end();
+                            });
+                        });
+                    });
+                });
+            });
+        });
     });
 
-    utils.executeCommand('../../cli.js', ['generate', 'bikini'], false, function(output, tmpPath) {
-        t.equal(output.toString(), 'Not inside a mCAP Project\n');
-    });
-
-    utils.executeCommand('../../cli.js', ['generate', 'connectionconfiguration'], false, function(output, tmpPath) {
-        t.equal(output.toString(), 'Not inside a mCAP Project\n');
-    });
-
-    utils.executeCommand('../../cli.js', ['generate', 'rest'], false, function(output, tmpPath) {
-        t.equal(output.toString(), 'Not inside a mCAP Project\n');
-    });
-
-    utils.executeCommand('../../cli.js', ['generate', 'saprfc'], false, function(output, tmpPath) {
-        t.equal(output.toString(), 'Not inside a mCAP Project\n');
-    });
-
-    utils.executeCommand('../../cli.js', ['generate', 'soap'], false, function(output, tmpPath) {
-        t.equal(output.toString(), 'Not inside a mCAP Project\n');
-    });
-
-    utils.executeCommand('../../cli.js', ['generate', 'sql'], false, function(output, tmpPath) {
-        t.equal(output.toString(), 'Not inside a mCAP Project\n');
-        t.end();
-    });
 });
 
-tap.test('calling mcap generate without any argument',function(t) {
-    utils.executeCommand('../../cli.js', ['generate'], false, function(output, tmpPath) {
+tap.test('calling mcap generate without any argument', function (t) {
+    utils.executeCommand('../../cli.js', ['generate'], false, function (output, tmpPath) {
         t.equal(output.toString(), '\n');
         t.end();
     });
 });
 
-tap.test('calling mcap generate bikini',function(t) {
-    utils.executeCommand('../../cli.js', ['new', 'test'], false, function(output, tmpPath) {
+tap.test('calling mcap generate bikini', function (t) {
+    utils.executeCommand('../../cli.js', ['new', 'test'], false, function (output, tmpPath) {
         // get the absolute path to the mcap project
         var mcapProjectPath = path.resolve('test');
 
-        utils.executeCommand('../../cli.js', ['generate', 'bikini'], false, function(output, tmpPath) {
+        utils.executeCommand('../../cli.js', ['generate', 'bikini'], false, function (output, tmpPath) {
             t.equal(output.toString(), 'Name: ');
             t.end();
             process.chdir('..');
@@ -340,7 +341,7 @@ tap.test('calling mcap generate bikini',function(t) {
     });
 });
 
-tap.test('WTF', function(t) {
+tap.test('WTF', function (t) {
     // Not sure why i need to do this?!
     // Without exiting manually, the previous test would never fail
     // no matter what i check
