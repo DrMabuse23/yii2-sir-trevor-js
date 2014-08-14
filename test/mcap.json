@@ -1,0 +1,22 @@
+{
+    "uuid": "0dbd6ba2-461b-4e88-b276-300e2758ad3d",
+    "name": "MyTestApp",
+    "description": "",
+    "baseAlias": "",
+    "push": {
+        "providers": [
+            {
+                "type": "GCM",
+                "apiKey": ""
+            },
+            {
+                "type": "APNS",
+                "certificateFile": "",
+                "passphrase": ""
+            }
+        ]
+    },
+    "assets": {
+        "uuid": ""
+    }
+}
