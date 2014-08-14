@@ -7,6 +7,7 @@ var cmdNew = require('./lib/command/new');
 var cmdServer = require('./lib/command/server');
 var cmdDeploy = require('./lib/command/deploy');
 var checkProject = require('./lib/check_project');
+var packageJSON = require('./package.json');
 
 function commandInfo() {
     console.log('Version', program._version);
@@ -21,7 +22,7 @@ function commandLog() {
 }
 
 program
-    .version('0.0.2')
+    .version(packageJSON.version)
     .option('info', 'Display the configuration and information')
     .option('new [name] [package] [template]', 'generates a skeletal mCAP Application in the current directory. If no param is given a wizard will guide you.')
     .option('example', 'Creates a mcap example application. Which shows a applications which is using push, security and dataSync')

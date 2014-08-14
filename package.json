@@ -1,6 +1,6 @@
 {
     "name": "mcap-cli",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "Commandline Interface to generate mCAP Applications",
     "main": "cli.js",
     "scripts": {
