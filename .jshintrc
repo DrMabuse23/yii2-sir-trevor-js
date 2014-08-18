@@ -17,29 +17,12 @@
     "jquery"        : true,
 
     "predef"        : [  // Custom globals.
-        "Backbone",
-        "brackets",
-        "URI",
-        "mCAP",
         "define",
-        "less",
-        "Mustache",
-        "_",
         "exports",
         "require",
         "process",
-        "appshell",
-        "it",
         "expect",
-        "waitsForFail",
-        "waitsFor",
-        "beforeEach",
-        "waitsForDone",
-        "beforeFirst",
-        "afterEach",
-        "afterLast",
-        "describe",
-        "jasmine"
+        "describe"
     ],
 
 
