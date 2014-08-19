@@ -1,37 +1,38 @@
 {
-    "name": "mcap-cli",
-    "version": "0.0.8",
-    "description": "Commandline Interface to generate mCAP Applications",
-    "main": "cli.js",
-    "scripts": {
-        "start": "cli.js",
-        "test": "tap test/tests/*.js"
-    },
-    "preferGlobal": true,
-    "bin": {
-        "mcap": "./cli.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mwaylabs/mcap-cli.git"
-    },
-    "author": "mwaylabs",
-    "license": "Apache-2.0",
-    "dependencies": {
-        "commander": "^2.2.0",
-        "promzard": "^0.2.2",
-        "rc": "^0.4.0",
-        "mcaprc": "~0.1.2",
-        "progress-bar": "^0.1.1",
-        "mcap-application-validation": "0.0.0",
-        "winston": "^0.7.3",
-        "mcap-generator-ionic": "~0.10.0",
-        "mcap-deploy": "~0.0.0",
-        "lodash": "^2.4.1"
-    },
-    "devDependencies": {
-        "mkdirp": "^0.5.0",
-        "rimraf": "^2.2.8",
-        "tap": "^0.4.11"
-    }
+  "name": "mcap-cli",
+  "version": "0.0.8",
+  "description": "Commandline Interface to generate mCAP Applications",
+  "main": "cli.js",
+  "scripts": {
+    "start": "cli.js",
+    "test": "tap test/tests/*.js"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "mcap": "./cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mwaylabs/mcap-cli.git"
+  },
+  "author": "mwaylabs",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "commander": "^2.2.0",
+    "promzard": "^0.2.2",
+    "rc": "^0.4.0",
+    "mcaprc": "~0.1.2",
+    "progress-bar": "^0.1.1",
+    "mcap-application-validation": "0.0.0",
+    "winston": "^0.7.3",
+    "mcap-generator-ionic": "~0.10.0",
+    "mcap-deploy": "~0.0.0",
+    "lodash": "^2.4.1",
+    "mcap-logger": "~0.0.0"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.0",
+    "rimraf": "^2.2.8",
+    "tap": "^0.4.11"
+  }
 }

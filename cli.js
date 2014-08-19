@@ -6,6 +6,7 @@ var cmdComponent = require('./lib/command/component');
 var cmdNew = require('./lib/command/new');
 var cmdServer = require('./lib/command/server');
 var cmdDeploy = require('./lib/command/deploy');
+var cmdLog = require('./lib/command/log');
 var checkProject = require('./lib/check_project');
 var packageJSON = require('./package.json');
 
@@ -15,10 +16,6 @@ function commandInfo() {
 
 function commandExample() {
     console.log('example ...');
-}
-
-function commandLog() {
-    console.log('log ' + program.log);
 }
 
 program
@@ -55,7 +52,7 @@ else if (program.server) {
 }
 else if (program.log) {
     if (checkProject.isInsideProject(true)) {
-        commandLog();
+        cmdLog(program);
     }
 }
 else if (program.deploy) {
