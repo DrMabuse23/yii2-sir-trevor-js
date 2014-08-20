@@ -26,7 +26,7 @@
     "mcap-application-validation": "0.0.0",
     "winston": "^0.7.3",
     "mcap-generator-ionic": "~0.10.0",
-    "mcap-deploy": "~0.0.0",
+    "mcap-deploy": "~0.0.2",
     "lodash": "^2.4.1",
     "mcap-logger": "~0.0.0"
   },
