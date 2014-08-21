@@ -13,10 +13,6 @@
         {
             "name": "Pascal Brewing",
             "email": "pascalbrewing@gmail.com"
-        },
-        {
-            "name": "Tobias Munk",
-            "email": "schmunk@usrbin.de"
         }
     ],
     "autoload": {
