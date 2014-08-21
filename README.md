@@ -1,9 +1,29 @@
 yii2-sir-trevor-js
 ==================
+
 [![Latest Stable Version](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/v/stable.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![Total Downloads](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/downloads.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![Latest Unstable Version](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/v/unstable.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![License](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/license.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js)
 
 #### Version 0.0.5
 A sir-trevor-js input widget for Yii 2 Framework.
+
+![Sir Trevor in action](https://raw.github.com/madebymany/sir-trevor-js/master/examples/sir-trevor.gif)
+## Browser support
+
+Sir Trevor is only tested on the following modern browsers:
+
+- IE10+
+- Chrome 25+
+- Safari 5+
+- Firefox 16+
+
+## Dependencies
+
+Sir Trevor requires [Underscore](http://underscorejs.org/) (or LoDash), [jQuery](http://jquery.com) (or Zepto) and [Eventable](https://github.com/madebymany/eventable).
+
+## Contributing
+
+See the [roadmap](https://github.com/madebymany/sir-trevor-js/wiki/Roadmap) and read a little about [the philosophy](https://github.com/madebymany/sir-trevor-js/wiki/Philosophy) guiding development.
+
 
 #### Todo
     1. create output from Input
@@ -49,7 +69,6 @@ Installation using composer:
         ]   
     )
     ?>
-<<<<<<< HEAD
     //Output
     <?php
         use drmabuse\sirtrevorjs\SirTrevorConverter;
@@ -57,15 +76,7 @@ Installation using composer:
     ?>
     <?= $converter->toHtml($json) ?>
     
-=======
-    
-### Output 
-````
-    {"data":[{
-        "type":"columns","data":{"columns":[{"width":6,"blocks":[{"type":"code","data":{"text":".....
-```
 
->>>>>>> refs/heads/master
 ## Advanced Usage
 
 ### Image Block - Example File Upload Handler
