@@ -1,0 +1,3 @@
+[submodule "sir-trevor"]
+	path = sir-trevor
+	url = git@github.com:DrMabuse23/sir-trevor-js.git
