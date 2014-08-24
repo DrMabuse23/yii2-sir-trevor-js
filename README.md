@@ -4,7 +4,7 @@ yii2-sir-trevor-js
 [![Latest Stable Version](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/v/stable.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![Total Downloads](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/downloads.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![Latest Unstable Version](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/v/unstable.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![License](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/license.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js)
 
 #### Version 0.0.5
-A sir-trevor-js input widget for Yii 2 Framework.
+a sir-trevor-js module
 
 ![Sir Trevor in action](https://raw.github.com/madebymany/sir-trevor-js/master/examples/sir-trevor.gif)
 ## Browser support
@@ -109,20 +109,18 @@ Installation using composer:
                         $response->content = Json::encode(['file' => ['url' => $model->path]]);
                         \Yii::$app->end(0, $response);
                     } else {
-                        $response->setStatusCode(500);
                         $response->statusText = "Database record could not be saved.";
-                        \Yii::$app->end(0, $response);
                     }
                 } else {
-                    $response->setStatusCode(500);
                     $response->statusText = "File could not be saved.";
-                    \Yii::$app->end(0, $response);
                 }
-            } else {
-                $response->setStatusCode(500);
+            }else{
                 $response->statusText = "File exists or root folder '{$savePath}' not found.";
-                \Yii::$app->end(0, $response);
             }
+
+            $response->setStatusCode(500);
+            \Yii::$app->end(0, $response);
+
         }
 
 ### Developer Info
