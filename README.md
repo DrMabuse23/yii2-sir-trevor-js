@@ -1,5 +1,6 @@
 yii2-sir-trevor-js
 ==================
+![](http://pascal-brewing.de/img/works-on-my-machine.png)
 
 [![Latest Stable Version](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/v/stable.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![Total Downloads](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/downloads.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![Latest Unstable Version](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/v/unstable.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js) [![License](https://poser.pugx.org/drmabuse/yii2-sir-trevor-js/license.svg)](https://packagist.org/packages/drmabuse/yii2-sir-trevor-js)
 
