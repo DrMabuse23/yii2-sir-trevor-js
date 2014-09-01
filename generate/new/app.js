@@ -11,6 +11,5 @@ module.exports = {
             return val;
         }, 'Name'),
         'package': prompt('Package', 'com.company.app')
-    },
-    'template': prompt('Template', 'helloworld')
+    }
 };
