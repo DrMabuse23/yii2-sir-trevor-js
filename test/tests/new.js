@@ -83,7 +83,7 @@ tap.test('run mcap new without any arguments', function(t) {
 tap.test('Create new app named testName', function(t) {
 
     utils.executeCommand('../../cli.js', ['new', 'testName'], false, function(output) {
-        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'mcap new testName, wizard should open');
+        t.equal(output.toString(), 'Done, without errors.\n', 'mcap new testName, wizard should open');
         t.end();
     });
 
@@ -103,7 +103,7 @@ tap.test('Create new app named testName2 and check for files and fileContent', f
     ];
 
     utils.executeCommand('../../cli.js', ['new', 'testName2'], false, function(output, tmpPath) {
-        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'mcap new testName2, files should have been created');
+        t.equal(output.toString(), 'Done, without errors.\n', 'mcap new testName2, files should have been created');
         helpers.assertFile(expectedFiles);
         helpers.assertFileContent(expectedContent);
 
@@ -128,7 +128,7 @@ tap.test('try to create an already existing app with the same name', function(t)
     ];
 
     utils.executeCommand('../../cli.js', ['new', 'testName'], false, function(output, tmpPath) {
-        t.equal(output.toString(), '\u001b[32minfo\u001b[39m: [command/new.js] Done, without errors.\n', 'mcap new testName, files should have been created');
+        t.equal(output.toString(), 'Done, without errors.\n', 'mcap new testName, files should have been created');
 
         helpers.assertFile(expectedFiles);
         helpers.assertFileContent(expectedContent);
