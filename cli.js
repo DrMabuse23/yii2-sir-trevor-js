@@ -14,15 +14,10 @@ function commandInfo() {
     console.log('Version', program._version);
 }
 
-function commandExample() {
-    console.log('example ...');
-}
-
 program
     .version(packageJSON.version)
     .option('info', 'Display the configuration and information')
     .option('new [name] [package] [template]', 'generates a skeletal mCAP Application in the current directory. If no param is given a wizard will guide you.')
-    .option('example', 'Creates a mcap example application. Which shows a applications which is using push, security and dataSync')
     .option('server <list>', 'List all server')
     .option('server <add> [alias] [URI] [user] [pass]', 'Add a server configuration')
     .option('server <remove> [alias]', 'Remove a server configuration')
@@ -43,9 +38,6 @@ else if (program.info) {
 }
 else if (program.new) {
     cmdNew(program.new === true ? program.new : program);
-}
-else if (program.example) {
-    commandExample();
 }
 else if (program.server) {
     cmdServer(program);
