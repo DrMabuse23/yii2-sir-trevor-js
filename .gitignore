@@ -7,4 +7,5 @@ b.js
 temp
 bower_components
 .mcaprc
+!/test/.mcaprc
 test/tmp

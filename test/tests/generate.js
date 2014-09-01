@@ -183,21 +183,18 @@ tap.test('rest', function (t) {
     var process = require.resolve('./../process/rest.js');
 
     var expect = {
-        'name': '',
-        'description': '',
-        'connector': '',
-        'protocol': '',
-        'properties': {
-            'descriptorUrl': '',
-            'userName': '',
-            'password': '',
-            'jsonMediaType': '',
-            'xmlMediaType': '',
-            'oauthProviderType': ''
+        name: '',
+        description: '',
+        connectorProvider: 'HTTP',
+        protocol: 'com.mwaysolutions.mcap.connector.http.RestConnectionConfig',
+        properties: {
+            descriptorUrl: '',
+            userName: '',
+            password: ''
         }
     };
 
-    var lastAttributeOutput = 'OAuth Provider Type:';
+    var lastAttributeOutput = 'Password:';
 
     //console.error('%s %s', node, process);
     spawnProcess(t, process, expect, lastAttributeOutput);

@@ -18,15 +18,12 @@ function respond(c, lastOutput, custom) {
         'Name: ',
         'Package: (com.company.app) '
     ];
-    if (output.match(regex)) {
-        c.stdin.write('myIndiTemplate\n');
-        c.stdin.end();
-        return;
-    } else if (output === testOut[0]) {
+    if (output === testOut[0]) {
         c.stdin.write('name\n');
         return;
     } else if (output === testOut[0] + testOut[1]) {
         c.stdin.write('io.mway.test\n');
+        c.stdin.end();
         return;
     }
 
@@ -35,7 +32,7 @@ function respond(c, lastOutput, custom) {
 }
 
 function spawnProcess(t, process, expect, lastAttributeOutput, custom) {
-    var c = spawn(node, [process], { customFds: [-1, -1, -1] });
+    var c = spawn(node, [process]);
     output = '';
     c.stdout.on('data', function (d) {
         output += d;
@@ -64,11 +61,10 @@ tap.test('new app', function (t) {
         'templateValues': {
             'name': 'name',
             'package': 'io.mway.test'
-        },
-        'template': 'myIndiTemplate'
+        }
     };
 
-    var lastAttributeOutput = 'Template: \\(helloworld\\)';
+    var lastAttributeOutput = 'package: io.mway.test';
 
     //console.error('%s %s', node, process);
     spawnProcess(t, process, expect, lastAttributeOutput);
