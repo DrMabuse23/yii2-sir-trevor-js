@@ -21,6 +21,7 @@ tap.test('deploy.prepare', function (t) {
     t.ok(uploadSettings.rootPath === rootPath, 'rootPath is invalid');
     t.ok(uploadSettings.fields.name === 'MyTestApp', 'fields.name is invalid');
     t.ok(uploadSettings.fields.uuid === '0dbd6ba2-461b-4e88-b276-300e2758ad3d', 'fields.uuid is invalid');
+    t.ok(uploadSettings.endpoint === '/my/awesome/endpoint', 'endpoint is not set correctly');
 
     t.end();
 });
