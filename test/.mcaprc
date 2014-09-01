@@ -3,6 +3,7 @@
    "test": {
       "baseurl": "http://localhost",
       "username": "test",
-      "password": "test"
+      "password": "test",
+      "endpoint": "/my/awesome/endpoint"
    }
 }
