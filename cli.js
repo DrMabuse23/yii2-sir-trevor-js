@@ -9,9 +9,10 @@ var cmdDeploy = require('./lib/command/deploy');
 var cmdLog = require('./lib/command/log');
 var checkProject = require('./lib/check_project');
 var packageJSON = require('./package.json');
+var printCat = require('./lib/printcat');
 
 function commandInfo() {
-    console.log('Version', program._version);
+    printCat.log('Version', program._version);
 }
 
 program
