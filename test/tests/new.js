@@ -6,6 +6,7 @@ var spawn = require('child_process').spawn;
 var utils = require('./../util/utils');
 var path = require('path');
 var helpers = require('./../util/helpers');
+var rimraf = require('rimraf');
 
 var node = process.execPath;
 var output = '';
@@ -70,49 +71,54 @@ tap.test('new app', function (t) {
     spawnProcess(t, process, expect, lastAttributeOutput);
 });
 
-tap.test('run mcap new without any arguments', function(t) {
+tap.test('run mcap new without any arguments', function (t) {
 
-    utils.executeCommand('../../cli.js', ['new'], false, function(output) {
-        //console.error(t.deepEqual);
+    utils.executeCommand('../../cli.js', ['new'], false, function (output, tmpPath, createdPath) {
         t.equal(output.toString(), 'Name: ', 'first output should be Name:');
         t.end();
-    });
+    }, null, true);
 
 });
 
-tap.test('Create new app named testName', function(t) {
+tap.test('Create new app named testName', function (t) {
 
-    utils.executeCommand('../../cli.js', ['new', 'testName'], false, function(output) {
+    var expectedFiles = [
+        'testName/mcap.json',
+        'testName/server',
+        'testName/client',
+        'testName/models'
+    ];
+
+    utils.executeCommand('../../cli.js', ['new', 'testName'], false, function (output, tmpPath, createdPath) {
         t.equal(output.toString(), 'Done, without errors.\n', 'mcap new testName, wizard should open');
+        helpers.assertFile(expectedFiles);
         t.end();
     });
 
 });
 
-tap.test('Create new app named testName2 and check for files and fileContent', function(t) {
+tap.test('Create new app named testName2 and check for files and fileContent', function (t) {
 
     var expectedFiles = [
         'testName2/mcap.json',
         'testName2/server'
     ];
 
-    var reg =  /(\"name\"\: \"testName2\")/;
+    var reg = /(\"name\"\: \"testName2\")/;
 
     var expectedContent = [
         ['testName2/mcap.json', reg]
     ];
 
-    utils.executeCommand('../../cli.js', ['new', 'testName2'], false, function(output, tmpPath) {
-        t.equal(output.toString(), 'Done, without errors.\n', 'mcap new testName2, files should have been created');
+    utils.executeCommand('../../cli.js', ['new', 'testName2'], false, function (output, tmpPath, createdPath) {
         helpers.assertFile(expectedFiles);
         helpers.assertFileContent(expectedContent);
-
         t.end();
     });
 
 });
 
-tap.test('try to create an already existing app with the same name', function(t) {
+tap.test('try to create an already existing app with the same name', function (t) {
 
     var absTestPath = null;
 
@@ -127,13 +133,13 @@ tap.test('try to create an already existing app with the same name', function(t)
         ['testName/mcap.json', reg]
     ];
 
-    utils.executeCommand('../../cli.js', ['new', 'testName'], false, function(output, tmpPath) {
+    utils.executeCommand('../../cli.js', ['new', 'testName'], false, function (output, tmpPath) {
         t.equal(output.toString(), 'Done, without errors.\n', 'mcap new testName, files should have been created');
 
         helpers.assertFile(expectedFiles);
         helpers.assertFileContent(expectedContent);
 
-        utils.executeCommand('../../cli.js', ['new', 'testName'], tmpPath, function(output, tmpPath) {
+        utils.executeCommand('../../cli.js', ['new', 'testName'], tmpPath, function (output, tmpPath) {
             absTestPath = path.resolve(process.cwd(), 'testName');
             t.equal(output.toString(), 'File ' + absTestPath + ' already exists\n');
             t.end();
@@ -144,7 +150,7 @@ tap.test('try to create an already existing app with the same name', function(t)
 
 });
 
-tap.test('WTF', function(t) {
+tap.test('WTF', function (t) {
     // Not sure why i need to do this?!
     // Without exiting manually, the previous test would never fail
     // no matter what i check

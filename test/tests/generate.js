@@ -334,7 +334,7 @@ tap.test('calling mcap generate bikini', function (t) {
             t.end();
             process.chdir('..');
             //utils.removeTmpDir();
-        }, mcapProjectPath);
+        }, mcapProjectPath, true);
     });
 });
 
