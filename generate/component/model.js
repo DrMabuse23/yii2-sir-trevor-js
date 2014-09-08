@@ -32,8 +32,8 @@ module.exports = {
             attr = attr.split(':');
             res[attr[0]] = {
                 'type': attr[1] || '',
-                'mandatory': attr[2] || false,
-                'key': attr[3] || false
+                'mandatory': attr[2] === 'true',
+                'key': attr[3] === 'true'
             };
         });
 

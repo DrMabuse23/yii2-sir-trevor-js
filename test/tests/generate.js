@@ -155,8 +155,8 @@ tap.test('model', function (t) {
             },
             'isbn': {
                 'type': 'integer',
-                'mandatory': 'mandatory',
-                'key': 'key'
+                'mandatory': true,
+                'key': false
             }
         }
     };
@@ -170,7 +170,7 @@ tap.test('model', function (t) {
             return;
         }
         if (output.match(/Attributes \(name:type:mandatory:key name:type:mandatory:key\): $/)) {
-            c.stdin.write('author:string isbn:integer:mandatory:key\n');
+            c.stdin.write('author:string isbn:integer:true:key\n');
             c.stdin.end();
             return;
         }
