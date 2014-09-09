@@ -54,6 +54,10 @@ else if (program.deploy) {
     }
 }
 else {
+    console.log('');
+    console.log('mCAP CLI');
+    console.log('');
+    console.log('  To ignore files create a `.mcapignore` file inside the root directory. The containing files and folders are not deployed to the server.');
     program.help();
 }
 
