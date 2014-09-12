@@ -185,8 +185,9 @@ tap.test('rest', function (t) {
     var expect = {
         name: '',
         description: '',
-        connectorProvider: 'HTTP',
-        protocol: 'com.mwaysolutions.mcap.connector.http.RestConnectionConfig',
+//        connectorProvider: 'HTTP',
+//        protocol: 'com.mwaysolutions.mcap.connector.http.RestConnectionConfig',
+        type: 'rest',
         properties: {
             descriptorUrl: '',
             userName: '',
