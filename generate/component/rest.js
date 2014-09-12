@@ -3,8 +3,7 @@
 module.exports = {
     'name': prompt('Name', ''),
     'description': prompt('Description', ''),
-    'connectorProvider': 'HTTP',//prompt('Connector', ''),
-    'protocol': 'com.mwaysolutions.mcap.connector.http.RestConnectionConfig',//prompt('Protocol', ''),
+    'type': 'rest',
     'properties': {
         'descriptorUrl': prompt('Descriptor URL', ''),
         'userName': prompt('User name', ''),
