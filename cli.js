@@ -6,6 +6,7 @@ var cmdComponent = require('./lib/command/component');
 var cmdNew = require('./lib/command/new');
 var cmdServer = require('./lib/command/server');
 var cmdDeploy = require('./lib/command/deploy');
+var cmdPublish = require('./lib/command/publish');
 var cmdLog = require('./lib/command/log');
 var checkProject = require('./lib/check_project');
 var packageJSON = require('./package.json');
@@ -26,6 +27,7 @@ program
     .option('server <default> [alias]', 'List all server')
     .option('log [alias]', 'Live logger of the given server')
     .option('deploy [alias] [path]', 'Deploy the application to the given server')
+    .option('publish [alias] [releaseStatus] [archivationMode]', 'Publish the Client Application to Relution. Defaults: releaseStatus: DEVELOPMENT archivationMode: archive')
     .option('generate <component>', 'Generate a mCAP Component. Available components: ' + cmdComponent.getComponentList().join(', '))
     .parse(process.argv);
 
@@ -42,6 +44,9 @@ else if (program.new) {
 }
 else if (program.server) {
     cmdServer(program);
+}
+else if (program.publish) {
+    cmdPublish.publish(program);
 }
 else if (program.log) {
     if (checkProject.isInsideProject(true)) {
