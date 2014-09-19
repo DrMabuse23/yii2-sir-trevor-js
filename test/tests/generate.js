@@ -46,100 +46,6 @@ function spawnProcess(t, process, expect, lastAttributeOutput, custom) {
     });
 }
 
-tap.test('bikini', function (t) {
-
-    var process = require.resolve('./../process/bikini.js');
-
-    var expect = {
-        'name': '',
-        'description': '',
-        'endpoint': '',
-        'model': '',
-        'idAttribute': ''
-    };
-
-    var lastAttributeOutput = 'Models ID Attribute:';
-
-    //console.error('%s %s', node, process);
-    spawnProcess(t, process, expect, lastAttributeOutput);
-});
-
-tap.test('connectionconfiguration', function (t) {
-
-    var process = require.resolve('./../process/connectionconfiguration.js');
-
-    var expect = {
-        'name': '',
-        'description': '',
-        'configurationId': '',
-        'configurationDescription': '',
-        'authentication': '',
-        'client': '',
-        'user': '',
-        'alias': '',
-        'password': '',
-        'language': '',
-        'sapCookie': '',
-        'x.509Certificate': '',
-        'externalIdData': '',
-        'externalIdType': '',
-        'applicationServer': '',
-        'systemNumber': '',
-        'messageServer': '',
-        'messagePort': '',
-        'systemId': '',
-        'logonGroup': '',
-        'gatewayServer': '',
-        'gatewayPort': '',
-        'sapRouterString': '',
-        'logonCheck': '',
-        'logonCodepage': '',
-        'logonCodepageType': '',
-        'tableParameterDeltaMngmt': '',
-        'getSsoTicket': '',
-        'denyInitialPwds': '',
-        'activeConnections': '',
-        'idleConnections': '',
-        'expirationTimeout': '',
-        'expirationPeriod': '',
-        'queuedTimeout': '',
-        'sncMode': '',
-        'sncPartner': '',
-        'sncLevel': '',
-        'sncName': '',
-        'sncLibrary': '',
-        'sncSso': '',
-        'repositoryDestination': '',
-        'repositoryUser': '',
-        'repositoryPassword': '',
-        'repositorySncMode': '',
-        'repositoryRoundtripOptimization': '',
-        'properties': {
-            'key': {
-                'type': 'type',
-                'value': 'value'
-            },
-            'key1': {
-                'type': 'type1',
-                'value': 'value1'
-            }
-        },
-        'factoryPid': '',
-        'bundleLocation': ''
-    };
-
-    var lastAttributeOutput = 'Bundle Location:';
-
-    //console.error('%s %s', node, process);
-    spawnProcess(t, process, expect, lastAttributeOutput, function (c, output) {
-        if (output.match(/Properties \(key:type:value key:type:value\): $/)) {
-            c.stdin.write('key:type:value key1:type1:value1\n');
-            return;
-        }
-        c.stdin.write('\n');
-    });
-});
-
 tap.test('model', function (t) {
 
     var process = require.resolve('./../process/model.js');
@@ -201,9 +107,9 @@ tap.test('rest', function (t) {
     spawnProcess(t, process, expect, lastAttributeOutput);
 });
 
-tap.test('saprfc', function (t) {
+tap.test('sap', function (t) {
 
-    var process = require.resolve('./../process/saprfc.js');
+    var process = require.resolve('./../process/sap.js');
 
     var expect = {
         'name': '',
@@ -289,27 +195,18 @@ tap.test('sql', function (t) {
 tap.test('calling mcap generate should throw an error if you\'re not in a mcap-project', function (t) {
     utils.executeCommand('../../cli.js', ['generate', 'model'], false, function (output, tmpPath) {
         t.equal(output.toString(), 'Not inside a mCAP Project\n');
-
-        utils.executeCommand('../../cli.js', ['generate', 'bikini'], false, function (output, tmpPath) {
+        utils.executeCommand('../../cli.js', ['generate', 'rest'], false, function (output, tmpPath) {
             t.equal(output.toString(), 'Not inside a mCAP Project\n');
 
-            utils.executeCommand('../../cli.js', ['generate', 'connectionconfiguration'], false, function (output, tmpPath) {
+            utils.executeCommand('../../cli.js', ['generate', 'sap'], false, function (output, tmpPath) {
                 t.equal(output.toString(), 'Not inside a mCAP Project\n');
 
-                utils.executeCommand('../../cli.js', ['generate', 'rest'], false, function (output, tmpPath) {
+                utils.executeCommand('../../cli.js', ['generate', 'soap'], false, function (output, tmpPath) {
                     t.equal(output.toString(), 'Not inside a mCAP Project\n');
 
-                    utils.executeCommand('../../cli.js', ['generate', 'saprfc'], false, function (output, tmpPath) {
+                    utils.executeCommand('../../cli.js', ['generate', 'sql'], false, function (output, tmpPath) {
                         t.equal(output.toString(), 'Not inside a mCAP Project\n');
-
-                        utils.executeCommand('../../cli.js', ['generate', 'soap'], false, function (output, tmpPath) {
-                            t.equal(output.toString(), 'Not inside a mCAP Project\n');
-
-                            utils.executeCommand('../../cli.js', ['generate', 'sql'], false, function (output, tmpPath) {
-                                t.equal(output.toString(), 'Not inside a mCAP Project\n');
-                                t.end();
-                            });
-                        });
+                        t.end();
                     });
                 });
             });
@@ -322,20 +219,6 @@ tap.test('calling mcap generate without any argument', function (t) {
     utils.executeCommand('../../cli.js', ['generate'], false, function (output, tmpPath) {
         t.equal(output.toString(), '\n');
         t.end();
-    });
-});
-
-tap.test('calling mcap generate bikini', function (t) {
-    utils.executeCommand('../../cli.js', ['new', 'test'], false, function (output, tmpPath) {
-        // get the absolute path to the mcap project
-        var mcapProjectPath = path.resolve('test');
-
-        utils.executeCommand('../../cli.js', ['generate', 'bikini'], false, function (output, tmpPath) {
-            t.equal(output.toString(), 'Name: ');
-            t.end();
-            process.chdir('..');
-            //utils.removeTmpDir();
-        }, mcapProjectPath, true);
     });
 });
 

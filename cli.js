@@ -26,7 +26,7 @@ program
     .option('server <default> [alias]', 'List all server')
     .option('log [alias]', 'Live logger of the given server')
     .option('deploy [alias] [path]', 'Deploy the application to the given server')
-    .option('generate <component>', 'Generate a mCAP Component, components: ' + cmdComponent.getComponentList().join(', '))
+    .option('generate <component>', 'Generate a mCAP Component. Available components: ' + cmdComponent.getComponentList().join(', '))
     .parse(process.argv);
 
 if (program.generate) {

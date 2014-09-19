@@ -5,11 +5,10 @@ var component = require('../../lib/command/component');
 
 tap.test('getComponentList', function (t) {
 
-    var expect = [ 'bikini',
-        'connectionconfiguration',
+    var expect = [
         'model',
         'rest',
-        'saprfc',
+        'sap',
         'soap',
         'sql' ];
     var list = component.getComponentList();
