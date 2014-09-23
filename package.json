@@ -30,11 +30,14 @@
     "promzard": "^0.2.2",
     "rc": "^0.4.0",
     "winston": "^0.7.3",
-    "relution-file-upload": "^0.4.4"
+    "relution-file-upload": "^0.4.4",
+    "mcap-serve": "0.0.0",
+    "request": "^2.44.0"
   },
   "devDependencies": {
     "mkdirp": "^0.5.0",
     "rimraf": "^2.2.8",
-    "tap": "^0.4.11"
+    "tap": "^0.4.11",
+    "sinon": "^1.10.3"
   }
 }
