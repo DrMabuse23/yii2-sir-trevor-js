@@ -1,7 +1,6 @@
 'use strict';
 
 var check = require('../../lib/check_project');
-
 module.exports = {
     'templateValues': {
         'name': prompt(function (val) {
