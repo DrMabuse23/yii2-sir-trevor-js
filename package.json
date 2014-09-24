@@ -1,6 +1,6 @@
 {
   "name": "mcap-cli",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Commandline Interface to generate mCAP Applications",
   "main": "cli.js",
   "scripts": {
@@ -22,16 +22,16 @@
     "commander": "^2.2.0",
     "lodash": "^2.4.1",
     "mcap-application-validation": "0.0.0",
-    "mcap-deploy": "~0.0.2",
-    "mcap-generator-ionic": "~0.11.0",
+    "mcap-deploy": "~0.1.0",
+    "mcap-generator-ionic": "~0.14.0",
     "mcap-logger": "~0.0.0",
     "mcaprc": "~0.1.2",
     "progress-bar": "^0.1.1",
     "promzard": "^0.2.2",
     "rc": "^0.4.0",
     "winston": "^0.7.3",
-    "relution-file-upload": "^0.4.4",
-    "mcap-serve": "0.0.0",
+    "relution-file-upload": "^0.6.0",
+    "mcap-serve": "~0.0.1",
     "request": "^2.44.0"
   },
   "devDependencies": {

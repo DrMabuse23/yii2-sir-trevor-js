@@ -1,9 +1,10 @@
-## 0.0.8 - 2014-08-14
+## 0.1.0 - 2014-09-24
 - add deploy command
 - read endpoint from mcaprc file
 - set bikini as default project template
 - update to new mcap-generate version
 - Bugfix generate model attributes
+- Add App Name to Bundle Identifier
 
 ## 0.0.5 - 2014-07-29
 - rename command to mcap
