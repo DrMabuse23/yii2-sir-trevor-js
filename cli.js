@@ -48,10 +48,14 @@ else if (program.server) {
     cmdServer(program);
 }
 else if (program.publish) {
-    cmdPublish.publish(program);
+    if (checkProject.isInsideProject(true)) {
+        cmdPublish.publish(program);
+    }
 }
 else if (program.serve) {
-    cmdServe.serve(program);
+    if (checkProject.isInsideProject(true)) {
+        cmdServe.serve(program);
+    }
 }
 else if (program.log) {
     if (checkProject.isInsideProject(true)) {
