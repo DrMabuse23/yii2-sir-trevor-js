@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
+var fs = require('fs');
+var path = require('path');
 var program = require('commander');
 var cmdComponent = require('./lib/command/component');
 var cmdNew = require('./lib/command/new');
@@ -15,6 +17,13 @@ var printCat = require('./lib/printcat');
 
 function commandInfo() {
     printCat.log('Version', program._version);
+}
+
+function welcome() {
+    var mcapArt = fs.readFileSync(path.resolve(__dirname, 'lib/welcome.txt'), {encoding:'utf8'});
+    var pkg = require('./package.json');
+    mcapArt += pkg.version;
+    return mcapArt;
 }
 
 program
@@ -68,13 +77,7 @@ else if (program.deploy) {
     }
 }
 else {
-    console.log('');
-    console.log('mCAP CLI');
-    console.log('');
-    console.log('  To ignore files create a `.mcapignore` file inside the root directory. The containing files and folders are not deployed to the server.');
-    console.log('  Use gulp glob pattern: Folder: folderName/**');
-    console.log('');
-    console.log('  Pro Tip: Change the deploy endpoint by setting "endpoint": "/studio/upload" of a server inside the .mcaprc.');
+    console.log(welcome());
     program.help();
 }
 
