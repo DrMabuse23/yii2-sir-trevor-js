@@ -39,5 +39,8 @@
     "rimraf": "^2.2.8",
     "tap": "^0.4.11",
     "sinon": "^1.10.3"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
   }
 }
