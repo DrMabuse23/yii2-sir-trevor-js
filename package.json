@@ -22,7 +22,7 @@
     "commander": "^2.2.0",
     "lodash": "^2.4.1",
     "mcap-application-validation": "0.0.0",
-    "mcap-deploy": "~0.1.0",
+    "mcap-deploy": "~0.2.0",
     "mcap-generator-ionic": "~0.14.0",
     "mcap-logger": "~0.0.0",
     "mcaprc": "~0.1.2",
