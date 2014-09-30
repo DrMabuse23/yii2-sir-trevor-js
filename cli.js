@@ -14,6 +14,7 @@ var cmdLog = require('./lib/command/log');
 var checkProject = require('./lib/check_project');
 var packageJSON = require('./package.json');
 var printCat = require('./lib/printcat');
+var chalk = require('chalk');
 
 function commandInfo() {
     printCat.log('Version', program._version);
@@ -22,8 +23,9 @@ function commandInfo() {
 function welcome() {
     var mcapArt = fs.readFileSync(path.resolve(__dirname, 'lib/welcome.txt'), {encoding:'utf8'});
     var pkg = require('./package.json');
-    mcapArt += pkg.version;
-    return mcapArt;
+    console.log(chalk.blue(mcapArt));
+    console.log(chalk.gray('Command line interface v' + pkg.version));
+    console.log('');
 }
 
 program
@@ -77,7 +79,7 @@ else if (program.deploy) {
     }
 }
 else {
-    console.log(welcome());
+    welcome();
     program.help();
 }
 
