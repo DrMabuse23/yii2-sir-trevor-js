@@ -9,6 +9,7 @@ Commandline Interface to generate mCAP Applications
 git clone https://github.com/mwaylabs/mcap-cli.git
 cd mcap-cli
 npm install
+npm link
 ```
 
 or
