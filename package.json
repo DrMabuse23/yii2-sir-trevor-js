@@ -4,8 +4,7 @@
   "description": "Commandline Interface to generate mCAP Applications",
   "main": "cli.js",
   "scripts": {
-    "start": "cli.js",
-    "test": "tap test/tests/*.js"
+    "test": "tap test/*.js"
   },
   "preferGlobal": true,
   "bin": {
@@ -20,27 +19,25 @@
   "dependencies": {
     "chalk": "^0.5.1",
     "commander": "^2.2.0",
+    "inquirer": "^0.8.0",
     "lodash": "^2.4.1",
     "mcap-application-validation": "0.0.0",
     "mcap-deploy": "~0.2.0",
     "mcap-generator-ionic": "~0.14.0",
     "mcap-logger": "~0.0.0",
+    "mcap-serve": "~0.0.1",
     "mcaprc": "~0.1.2",
     "progress-bar": "^0.1.1",
     "promzard": "^0.2.2",
     "rc": "^0.4.0",
-    "winston": "^0.7.3",
     "relution-file-upload": "^0.6.0",
-    "mcap-serve": "~0.0.1",
-    "request": "^2.44.0"
+    "request": "^2.44.0",
+    "winston": "^0.7.3"
   },
   "devDependencies": {
     "mkdirp": "^0.5.0",
     "rimraf": "^2.2.8",
     "tap": "^0.4.11",
     "sinon": "^1.10.3"
-  },
-  "scripts": {
-    "test": "tap test/*.js"
   }
 }
